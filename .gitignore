@@ -1,0 +1,15 @@
+# python cache files
+__pycache__/
+*.pyc
+
+# build artifacts
+build/
+dist/
+uk_election_ids.egg-info/
+README.rst
+
+# pipenv lockfile
+Pipfile.lock
+
+# test coverage
+.coverage
