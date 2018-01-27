@@ -65,7 +65,7 @@ ValueError: election_type local must have a division in order to create a ballot
 
 ## API Documentation
 
-See the full [API Reference](https://github.com/DemocracyClub/uk-election-ids/docs.txt)
+See the full [API Reference](https://github.com/DemocracyClub/uk-election-ids/blob/master/docs.txt)
 
 ## Licensing
 
