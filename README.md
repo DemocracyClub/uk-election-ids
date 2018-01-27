@@ -63,6 +63,10 @@ ValueError: election_type local must have a division in order to create a ballot
 ]
 ```
 
+## API Documentation
+
+See the full [API Reference](https://github.com/DemocracyClub/uk-election-ids/docs.txt)
+
 ## Licensing
 
 `uk_election_ids` is made available under the MIT License.
@@ -80,4 +84,10 @@ Build locally:
 ```bash
 sudo apt-get install pandoc
 ./build.sh
+```
+
+Rebuild the API docs:
+
+```bash
+pydoc uk_election_ids.election_ids.IdBuilder > docs.txt
 ```

@@ -12,6 +12,20 @@ CONTEST_TYPES = ('by', 'by election', 'by-election', 'election')
 class IdBuilder:
 
     def __init__(self, election_type, date):
+        """Constructor
+
+        Args:
+            election_type (str): May be one of
+                `['sp', 'nia', 'pcc', 'naw', 'parl', 'local', 'gla', 'mayor']`
+            date (date|str): May be either a python date object,
+                or a string in 'Y-m-d' format.
+                `myid = IdBuilder('local', date(2018, 5, 3))` and
+                `myid = IdBuilder('local', '2018-05-03'))`
+                are functionally equivalent invocations.
+
+        Returns:
+            IdBuilder
+        """
         if election_type == 'ref':
             raise NotImplementedError()
         if election_type == 'eu':
@@ -41,11 +55,36 @@ class IdBuilder:
             return self.spec.can_have_divs[self.subtype]
 
     def with_subtype(self, subtype):
+        """Add a subtype segment
+
+        Args:
+            subtype (str): May be one of `['a', 'c', 'r']`. See the
+                [Reference Definition](https://elections.democracyclub.org.uk/reference_definition)
+                for valid election type/subtype combinations.
+
+        Returns:
+            IdBuilder
+
+        Raises:
+            ValueError
+        """
         self._validate_subtype(subtype)
         self.subtype = subtype
         return self
 
     def with_organisation(self, organisation):
+        """Add an organisation segment.
+
+        Args:
+            organisation (str): Official name of an administrative body
+                holding an election.
+
+        Returns:
+            IdBuilder
+
+        Raises:
+            ValueError
+        """
         if organisation is None:
             organisation = ''
         organisation = slugify(organisation)
@@ -54,6 +93,17 @@ class IdBuilder:
         return self
 
     def with_division(self, division):
+        """Add a division segment
+
+        Args:
+            division (str): Official name of an electoral division.
+
+        Returns:
+            IdBuilder
+
+        Raises:
+            ValueError
+        """
         if division is None:
             division = ''
         division = slugify(division)
@@ -62,6 +112,20 @@ class IdBuilder:
         return self
 
     def with_contest_type(self, contest_type):
+        """Add a contest_type segment
+
+        Args:
+            contest_type (str): Invoke with contest_type='by' or
+                contest_type='by-election' to add a 'by' segment to the
+                ballot_id. Invoking with contest_type='election' is valid
+                syntax but has no effect.
+
+        Returns:
+            IdBuilder
+
+        Raises:
+            ValueError
+        """
         self._validate_contest_type(contest_type)
         if contest_type.lower() in ('by', 'by election', 'by-election'):
             self.contest_type = 'by'
@@ -113,6 +177,13 @@ class IdBuilder:
 
     @property
     def election_group_id(self):
+        """
+        Returns:
+            str: Election Group ID
+
+        Raises:
+            ValueError
+        """
         self._validate()
         # there are no additional validation checks for the top-level group id
         parts = []
@@ -130,6 +201,13 @@ class IdBuilder:
 
     @property
     def subtype_group_id(self):
+        """
+        Returns:
+            str: Subtype Group ID
+
+        Raises:
+            ValueError
+        """
         self._validate()
         self._validate_for_subtype_group_id()
 
@@ -152,6 +230,13 @@ class IdBuilder:
 
     @property
     def organisation_group_id(self):
+        """
+        Returns:
+            str: Organisation Group ID
+
+        Raises:
+            ValueError
+        """
         self._validate()
         self._validate_for_organisation_group_id()
 
@@ -176,6 +261,13 @@ class IdBuilder:
 
     @property
     def ballot_id(self):
+        """
+        Returns:
+            str: ballot ID
+
+        Raises:
+            ValueError
+        """
         self._validate()
         self._validate_division(self.division)
         self._validate_for_ballot_id()
@@ -195,6 +287,13 @@ class IdBuilder:
 
     @property
     def ids(self):
+        """
+        Returns:
+            list of str: all applicable IDs
+
+        Raises:
+            ValueError
+        """
         ids = []
 
         try:
