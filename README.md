@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.org/DemocracyClub/uk-election-ids.svg?branch=master)](https://travis-ci.org/DemocracyClub/uk-election-ids)
 [![Coverage Status](https://coveralls.io/repos/github/DemocracyClub/uk-election-ids/badge.svg?branch=master)](https://coveralls.io/github/DemocracyClub/uk-election-ids?branch=master)
 
-Create Democracy Club Election Identifiers
+Create Democracy Club Election Identifiers.
+
+Democracy Club defines a specification for creating reproducible unique identifiers for elections in the UK. See our [reference definition](https://elections.democracyclub.org.uk/reference_definition). If you are interested in independently producing identifiers which are compatible with those produced by our [Every Election](https://elections.democracyclub.org.uk/) platform, this python package includes a builder object, slugging logic and validation rules for creating identifiers that conform to the spec.
 
 ## Installation
 
@@ -66,6 +68,28 @@ ValueError: election_type local must have a division in order to create a ballot
 ## API Documentation
 
 See the full [API Reference](https://github.com/DemocracyClub/uk-election-ids/blob/master/docs.txt)
+
+## Data Sources
+
+### Election Types and Subtypes
+
+Valid Election types and subtypes are defined in the [reference definition](https://elections.democracyclub.org.uk/reference_definition).
+
+
+### Organisation Names
+
+For compatibility, organisation segments must use official names. Organisation names can be sourced from [gov.uk registers](https://registers.cloudapps.digital/). Short form versions of names should be used i.e: add an organisation segment with `myid.with_organisation('Birmingham')` not `myid.with_organisation('Birmingham City Council')`
+
+* [Local authorities in England](https://local-authority-eng.register.gov.uk/): use the 'name' column/key
+* [Principal local authorities in Wales](https://principal-local-authority.register.gov.uk/): use the 'name' column.key
+* [Local authorities in Scotland](https://local-authority-sct.register.gov.uk/): use the 'name' column/key
+* TBC: source for Northern Ireland
+
+Alternatively organisation names can be sourced from the [Every Election API](https://elections.democracyclub.org.uk/api/organisations/). Use the `common_name` key.
+
+### Division Names
+
+For compatibility, division segments must use official names. For boundaries that are already in use, names of parliamentary constituencies, district wards and county electoral divisions should be sourced from [OS Boundary Line](https://www.ordnancesurvey.co.uk/business-and-government/products/boundary-line.html). New boundaries must be extracted from legislation. We also maintain a [parser](https://github.com/DemocracyClub/eco-parser) which can help with extracting this data from Electoral Change Orders.
 
 ## Licensing
 
