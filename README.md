@@ -81,7 +81,7 @@ Valid Election types and subtypes are defined in the [reference definition](http
 For compatibility, organisation segments must use official names. Organisation names can be sourced from [gov.uk registers](https://registers.cloudapps.digital/). Short form versions of names should be used i.e: add an organisation segment with `myid.with_organisation('Birmingham')` not `myid.with_organisation('Birmingham City Council')`
 
 * [Local authorities in England](https://local-authority-eng.register.gov.uk/): use the 'name' column/key
-* [Principal local authorities in Wales](https://principal-local-authority.register.gov.uk/): use the 'name' column.key
+* [Principal local authorities in Wales](https://principal-local-authority.register.gov.uk/): use the 'name' column/key
 * [Local authorities in Scotland](https://local-authority-sct.register.gov.uk/): use the 'name' column/key
 * TBC: source for Northern Ireland
 
