@@ -95,6 +95,10 @@ For compatibility, division segments must use official names. For boundaries tha
 
 `uk_election_ids` is made available under the MIT License.
 
+## Support
+
+To report a bug, [raise an issue](https://github.com/DemocracyClub/uk-election-ids/issues). If you are using election identifiers, [join our slack](https://slack.democracyclub.org.uk/) to ask questions or tell us about your project.
+
 ## Development
 
 Run the tests locally:
