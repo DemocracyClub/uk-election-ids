@@ -10,12 +10,12 @@ Democracy Club defines a specification for creating reproducible unique identifi
 ## Installation
 
 ```bash
-pip install git+git://github.com/DemocracyClub/uk-election-ids.git
+pip install uk-election-ids
 ```
 
 ## Platform Support
 
-`uk_election_ids` is tested under Python 3.4, 3.5 and 3.6
+`uk-election-ids` is tested under Python 3.4, 3.5 and 3.6
 
 ## Usage Examples
 
@@ -93,7 +93,7 @@ For compatibility, division segments must use official names. For boundaries tha
 
 ## Licensing
 
-`uk_election_ids` is made available under the MIT License.
+`uk-election-ids` is made available under the MIT License.
 
 ## Support
 
