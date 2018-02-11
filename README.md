@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/DemocracyClub/uk-election-ids.svg?branch=master)](https://travis-ci.org/DemocracyClub/uk-election-ids)
 [![Coverage Status](https://coveralls.io/repos/github/DemocracyClub/uk-election-ids/badge.svg?branch=master)](https://coveralls.io/github/DemocracyClub/uk-election-ids?branch=master)
+![PyPI Version](https://img.shields.io/pypi/v/uk-election-ids.svg)
+![License](https://img.shields.io/pypi/l/uk-election-ids.svg)
+![Python Support](https://img.shields.io/pypi/pyversions/uk-election-ids.svg)
 
 Create Democracy Club Election Identifiers.
 
@@ -12,10 +15,6 @@ Democracy Club defines a specification for creating reproducible unique identifi
 ```bash
 pip install uk-election-ids
 ```
-
-## Platform Support
-
-`uk-election-ids` is tested under Python 3.4, 3.5 and 3.6
 
 ## Usage Examples
 
@@ -90,10 +89,6 @@ Alternatively organisation names can be sourced from the [Every Election API](ht
 ### Division Names
 
 For compatibility, division segments must use official names. For boundaries that are already in use, names of parliamentary constituencies, district wards and county electoral divisions should be sourced from [OS Boundary Line](https://www.ordnancesurvey.co.uk/business-and-government/products/boundary-line.html). New boundaries must be extracted from legislation. We also maintain a [parser](https://github.com/DemocracyClub/eco-parser) which can help with extracting this data from Electoral Change Orders.
-
-## Licensing
-
-`uk-election-ids` is made available under the MIT License.
 
 ## Support
 
