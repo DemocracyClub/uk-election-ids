@@ -47,8 +47,8 @@ ValueError: Allowed values for subtype are ('c', 'a')
 >>> myid = IdBuilder('local', date(2018, 5, 3)).with_organisation('Test Org')
 >>> myid.election_group_id
 'local.2018-05-03'
->>> myid.election_group_id
-'local.2018-05-03'
+>>> myid.organisation_group_id
+'local.test-org.2018-05-03'
 >>> myid.ballot_id
 ValueError: election_type local must have a division in order to create a ballot id
 
