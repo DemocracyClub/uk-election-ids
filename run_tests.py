@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import sys
 import unittest
 
 
@@ -9,4 +10,5 @@ if __name__ == '__main__':
     loader = unittest.TestLoader()
     tests = loader.discover(os.path.abspath(os.path.join(dirname, 'tests')))
     runner = unittest.runner.TextTestRunner()
-    runner.run(tests)
+    result = runner.run(tests)
+    sys.exit(not result.wasSuccessful())
