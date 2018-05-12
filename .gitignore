@@ -9,6 +9,7 @@ uk_election_ids.egg-info/
 README.rst
 
 # pipenv lockfile
+Pipfile
 Pipfile.lock
 
 # test coverage

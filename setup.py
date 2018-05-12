@@ -21,6 +21,11 @@ setup(
     packages=['uk_election_ids'],
     description='Create Democracy Club Election Identifiers',
     long_description=_get_description(),
+    extras_require={
+        'testing': [
+            'python-coveralls',
+        ]
+    },
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
