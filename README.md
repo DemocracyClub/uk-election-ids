@@ -105,7 +105,6 @@ Run the tests locally:
 Build locally:
 
 ```bash
-sudo apt-get install pandoc
 ./build.sh
 ```
 
