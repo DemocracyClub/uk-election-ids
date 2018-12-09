@@ -14,7 +14,7 @@ def _get_description():
 
 setup(
     name='uk_election_ids',
-    version='0.1.0',
+    version='0.1.1',
     author="chris48s",
     license="MIT",
     url="https://github.com/DemocracyClub/uk-election-ids/",
@@ -34,5 +34,6 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
 )
