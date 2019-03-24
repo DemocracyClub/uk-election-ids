@@ -66,7 +66,7 @@ ValueError: election_type local must have a division in order to create a ballot
 
 ## API Documentation
 
-See the full [API Reference](https://github.com/DemocracyClub/uk-election-ids/blob/master/docs.txt)
+See the full [API Reference](https://democracyclub.github.io/uk-election-ids/)
 
 ## Data Sources
 
@@ -102,14 +102,14 @@ Run the tests locally:
 ./run_tests.py
 ```
 
-Build locally:
+Build package locally:
 
 ```bash
 ./build.sh
 ```
 
-Rebuild the API docs:
+Build the API docs:
 
 ```bash
-pydoc uk_election_ids.election_ids.IdBuilder > docs.txt
+cd docs && make clean html
 ```
