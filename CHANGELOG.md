@@ -1,5 +1,9 @@
 # Changelog
 
+## :package: [0.1.2](https://pypi.org/project/uk-election-ids/0.1.2/) - 2019-03-24
+
+Documentation Improvements
+
 ## :package: [0.1.1](https://pypi.org/project/uk-election-ids/0.1.1/) - 2018-12-09
 
 Tested on Python 3.7
