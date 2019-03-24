@@ -25,6 +25,10 @@ setup(
     extras_require={
         'testing': [
             'python-coveralls',
+        ],
+        'development': [
+            'sphinx',
+            'sphinx_rtd_theme',
         ]
     },
     classifiers=[
