@@ -11,16 +11,21 @@ CONTEST_TYPES = ('by', 'by election', 'by-election', 'election')
 
 class IdBuilder:
 
+    """
+    Builder object for creating
+    `Democracy Club Election Identifiers <https://elections.democracyclub.org.uk/reference_definition>`_.
+    """
+
     def __init__(self, election_type, date):
         """Constructor
 
         Args:
             election_type (str): May be one of
-                `['sp', 'nia', 'pcc', 'naw', 'parl', 'local', 'gla', 'mayor']`
+                ``['sp', 'nia', 'pcc', 'naw', 'parl', 'local', 'gla', 'mayor']``
             date (date|str): May be either a python date object,
                 or a string in 'Y-m-d' format.
-                `myid = IdBuilder('local', date(2018, 5, 3))` and
-                `myid = IdBuilder('local', '2018-05-03'))`
+                ``myid = IdBuilder('local', date(2018, 5, 3))`` and
+                ``myid = IdBuilder('local', '2018-05-03'))``
                 are functionally equivalent invocations.
 
         Returns:
@@ -58,8 +63,8 @@ class IdBuilder:
         """Add a subtype segment
 
         Args:
-            subtype (str): May be one of `['a', 'c', 'r']`. See the
-                [Reference Definition](https://elections.democracyclub.org.uk/reference_definition)
+            subtype (str): May be one of ``['a', 'c', 'r']``. See the
+                `Reference Definition <https://elections.democracyclub.org.uk/reference_definition>`_.
                 for valid election type/subtype combinations.
 
         Returns:
@@ -115,9 +120,9 @@ class IdBuilder:
         """Add a contest_type segment
 
         Args:
-            contest_type (str): Invoke with contest_type='by' or
-                contest_type='by-election' to add a 'by' segment to the
-                ballot_id. Invoking with contest_type='election' is valid
+            contest_type (str): Invoke with ``contest_type='by'`` or
+                ``contest_type='by-election'`` to add a 'by' segment to the
+                ballot_id. Invoking with ``contest_type='election'`` is valid
                 syntax but has no effect.
 
         Returns:
@@ -178,11 +183,7 @@ class IdBuilder:
     @property
     def election_group_id(self):
         """
-        Returns:
-            str: Election Group ID
-
-        Raises:
-            ValueError
+        str: Election Group ID
         """
         self._validate()
         # there are no additional validation checks for the top-level group id
@@ -202,11 +203,7 @@ class IdBuilder:
     @property
     def subtype_group_id(self):
         """
-        Returns:
-            str: Subtype Group ID
-
-        Raises:
-            ValueError
+        str: Subtype Group ID
         """
         self._validate()
         self._validate_for_subtype_group_id()
@@ -231,11 +228,7 @@ class IdBuilder:
     @property
     def organisation_group_id(self):
         """
-        Returns:
-            str: Organisation Group ID
-
-        Raises:
-            ValueError
+        str: Organisation Group ID
         """
         self._validate()
         self._validate_for_organisation_group_id()
@@ -262,11 +255,7 @@ class IdBuilder:
     @property
     def ballot_id(self):
         """
-        Returns:
-            str: ballot ID
-
-        Raises:
-            ValueError
+        str: Ballot ID
         """
         self._validate()
         self._validate_division(self.division)
@@ -288,11 +277,7 @@ class IdBuilder:
     @property
     def ids(self):
         """
-        Returns:
-            list of str: all applicable IDs
-
-        Raises:
-            ValueError
+        list[str]: All applicable IDs
         """
         ids = []
 
