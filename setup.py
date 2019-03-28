@@ -29,6 +29,7 @@ setup(
         'development': [
             'sphinx',
             'sphinx_rtd_theme',
+            'ghp-import',
         ]
     },
     classifiers=[

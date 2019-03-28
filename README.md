@@ -108,8 +108,8 @@ Build package locally:
 ./build.sh
 ```
 
-Build the API docs:
+Build and deploy the API docs:
 
 ```bash
-cd docs && make clean html
+(cd docs && make clean html) && ghp-import -n -p docs/_build/html/
 ```
