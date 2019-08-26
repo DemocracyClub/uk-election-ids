@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/pypi/l/uk-election-ids.svg)
 ![Python Support](https://img.shields.io/pypi/pyversions/uk-election-ids.svg)
 
-Create Democracy Club Election Identifiers.
+Create and validate Democracy Club Election Identifiers.
 
 Democracy Club defines a specification for creating reproducible unique identifiers for elections in the UK. See our [reference definition](https://elections.democracyclub.org.uk/reference_definition). If you are interested in independently producing identifiers which are compatible with those produced by our [Every Election](https://elections.democracyclub.org.uk/) platform, this python package includes a builder object, slugging logic and validation rules for creating identifiers that conform to the spec.
 
@@ -19,6 +19,7 @@ pip install uk-election-ids
 ## Usage Examples
 
 ```python
+# Building identifiers
 >>> from uk_election_ids.election_ids import IdBuilder
 >>> from datetime import date
 
@@ -62,6 +63,16 @@ ValueError: election_type local must have a division in order to create a ballot
     'local.test-org.area2.2018-05-03',
     'local.test-org.area3.2018-05-03'
 ]
+
+
+# Validating identifiers
+>>> from uk_election_ids.election_ids import validate
+
+>>> validate('local.2018-05-03')
+True
+
+>>> validate('foo.bar')
+False
 ```
 
 ## API Documentation
