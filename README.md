@@ -5,6 +5,7 @@
 ![PyPI Version](https://img.shields.io/pypi/v/uk-election-ids.svg)
 ![License](https://img.shields.io/pypi/l/uk-election-ids.svg)
 ![Python Support](https://img.shields.io/pypi/pyversions/uk-election-ids.svg)
+![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 
 Create and validate Democracy Club Election Identifiers.
 
