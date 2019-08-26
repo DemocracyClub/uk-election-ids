@@ -8,6 +8,8 @@ class TestIdBuilder(TestCase):
     def test_invalid_election_type(self):
         with self.assertRaises(ValueError):
             IdBuilder('foo', date(2018, 5, 3))
+        with self.assertRaises(ValueError):
+            IdBuilder('eu', date(2018, 5, 3))
 
     def test_invalid_dates(self):
         with self.assertRaises(ValueError):
@@ -82,20 +84,20 @@ class TestIdBuilder(TestCase):
                 "%s.r.test-division.2018-05-03" % (election_type)
             ], id.ids)
 
-    def test_nia_parl_with_org(self):
-        for election_type in ('nia', 'parl'):
+    def test_nia_parl_europarl_with_org(self):
+        for election_type in ('nia', 'parl', 'europarl'):
             with self.assertRaises(ValueError):
                 IdBuilder(election_type, date(2018, 5, 3))\
                     .with_organisation('test-org')
 
-    def test_nia_parl_with_subtype(self):
-        for election_type in ('nia', 'parl'):
+    def test_nia_parl_europarl_with_subtype(self):
+        for election_type in ('nia', 'parl', 'europarl'):
             with self.assertRaises(ValueError):
                 IdBuilder(election_type, date(2018, 5, 3))\
                     .with_subtype('x')
 
-    def test_nia_parl_no_div(self):
-        for election_type in ('nia', 'parl'):
+    def test_nia_parl_europarl_no_div(self):
+        for election_type in ('nia', 'parl', 'europarl'):
             id = IdBuilder(election_type, date(2018, 5, 3))
             election_id = id.election_group_id
             self.assertEqual("%s.2018-05-03" % (election_type), election_id)
@@ -107,8 +109,8 @@ class TestIdBuilder(TestCase):
                 id.ballot_id
             self.assertEqual(["%s.2018-05-03" % (election_type)], id.ids)
 
-    def test_nia_parl_with_div(self):
-        for election_type in ('nia', 'parl'):
+    def test_nia_parl_europarl_with_div(self):
+        for election_type in ('nia', 'parl', 'europarl'):
             id = IdBuilder(election_type, date(2018, 5, 3))\
                 .with_division('test-division')
             election_id = id.election_group_id
@@ -368,10 +370,6 @@ class TestIdBuilder(TestCase):
     def test_ref(self):
         with self.assertRaises(NotImplementedError):
             IdBuilder('ref', date(2018, 5, 3))
-
-    def test_eu(self):
-        with self.assertRaises(NotImplementedError):
-            IdBuilder('eu', date(2018, 5, 3))
 
     def test_none(self):
         id = IdBuilder('local', date(2018, 5, 3))\

@@ -13,6 +13,13 @@ ELECTION_TYPES = {
         'can_have_orgs': False,
         'can_have_divs': True,
     },
+    'europarl': {
+        'name': "European Parliament (UK) elections",
+        'subtypes': [],
+        'default_voting_system': 'PR-CL',
+        'can_have_orgs': False,
+        'can_have_divs': True,
+    },
     'naw': {
         'name': "National Assembly for Wales elections",
         'subtypes': [
@@ -70,5 +77,5 @@ ELECTION_TYPES = {
         'default_voting_system': 'sv',
         'can_have_orgs': True,
         'can_have_divs': False,
-    }
+    },
 }
