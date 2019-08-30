@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API Reference &mdash; uk-election-ids  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Sources" href="data.html" />
+    <link rel="prev" title="UK Election IDs" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> uk-election-ids
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-uk_election_ids.election_ids">IdBuilder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-uk_election_ids.election_ids">validate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Usage Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data Sources</a></li>
+</ul>
+<p class="caption"><span class="caption-text">External Links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/DemocracyClub/uk-election-ids">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pypi.org/project/uk-election-ids/">PyPI</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">uk-election-ids</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-uk_election_ids.election_ids">
+<span id="idbuilder"></span><h2>IdBuilder<a class="headerlink" href="#module-uk_election_ids.election_ids" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="uk_election_ids.election_ids.IdBuilder">
+<em class="property">class </em><code class="descclassname">uk_election_ids.election_ids.</code><code class="descname">IdBuilder</code><span class="sig-paren">(</span><em>election_type</em>, <em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builder object for creating
+<a class="reference external" href="https://elections.democracyclub.org.uk/reference_definition">Democracy Club Election Identifiers</a>.</p>
+<p>Constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>election_type</strong> (<em>str</em>) – May be one of
+<code class="docutils literal notranslate"><span class="pre">['europarl',</span> <span class="pre">'gla',</span> <span class="pre">'local',</span> <span class="pre">'mayor',</span> <span class="pre">'naw',</span> <span class="pre">'nia',</span> <span class="pre">'parl',</span> <span class="pre">'pcc',</span> <span class="pre">'sp']</span></code></li>
+<li><strong>date</strong> (<em>date|str</em>) – May be either a python date object,
+or a string in ‘Y-m-d’ format.
+<code class="docutils literal notranslate"><span class="pre">myid</span> <span class="pre">=</span> <span class="pre">IdBuilder('local',</span> <span class="pre">date(2018,</span> <span class="pre">5,</span> <span class="pre">3))</span></code> and
+<code class="docutils literal notranslate"><span class="pre">myid</span> <span class="pre">=</span> <span class="pre">IdBuilder('local',</span> <span class="pre">'2018-05-03'))</span></code>
+are functionally equivalent invocations.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">IdBuilder</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="uk_election_ids.election_ids.IdBuilder.ballot_id">
+<code class="descname">ballot_id</code><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.ballot_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ballot ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uk_election_ids.election_ids.IdBuilder.election_group_id">
+<code class="descname">election_group_id</code><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.election_group_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Election Group ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uk_election_ids.election_ids.IdBuilder.ids">
+<code class="descname">ids</code><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>All applicable IDs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list[str]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uk_election_ids.election_ids.IdBuilder.organisation_group_id">
+<code class="descname">organisation_group_id</code><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.organisation_group_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Organisation Group ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uk_election_ids.election_ids.IdBuilder.subtype_group_id">
+<code class="descname">subtype_group_id</code><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.subtype_group_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtype Group ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="uk_election_ids.election_ids.IdBuilder.with_contest_type">
+<code class="descname">with_contest_type</code><span class="sig-paren">(</span><em>contest_type</em><span class="sig-paren">)</span><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.with_contest_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a contest_type segment</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contest_type</strong> (<em>str</em>) – Invoke with <code class="docutils literal notranslate"><span class="pre">contest_type='by'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">contest_type='by-election'</span></code> to add a ‘by’ segment to the
+ballot_id. Invoking with <code class="docutils literal notranslate"><span class="pre">contest_type='election'</span></code> is valid
+syntax but has no effect.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">IdBuilder</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="uk_election_ids.election_ids.IdBuilder.with_division">
+<code class="descname">with_division</code><span class="sig-paren">(</span><em>division</em><span class="sig-paren">)</span><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.with_division" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a division segment</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>division</strong> (<em>str</em>) – Official name of an electoral division.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">IdBuilder</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="uk_election_ids.election_ids.IdBuilder.with_organisation">
+<code class="descname">with_organisation</code><span class="sig-paren">(</span><em>organisation</em><span class="sig-paren">)</span><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.with_organisation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an organisation segment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>organisation</strong> (<em>str</em>) – Official name of an administrative body
+holding an election.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">IdBuilder</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="uk_election_ids.election_ids.IdBuilder.with_subtype">
+<code class="descname">with_subtype</code><span class="sig-paren">(</span><em>subtype</em><span class="sig-paren">)</span><a class="headerlink" href="#uk_election_ids.election_ids.IdBuilder.with_subtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a subtype segment</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>subtype</strong> (<em>str</em>) – May be one of <code class="docutils literal notranslate"><span class="pre">['a',</span> <span class="pre">'c',</span> <span class="pre">'r']</span></code>. See the
+<a class="reference external" href="https://elections.democracyclub.org.uk/reference_definition">Reference Definition</a>.
+for valid election type/subtype combinations.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">IdBuilder</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="usage-examples">
+<h3>Usage Examples<a class="headerlink" href="#usage-examples" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">uk_election_ids.election_ids</span> <span class="k">import</span> <span class="n">IdBuilder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">date</span>
+
+
+<span class="go"># Chain method calls to build up an ID object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myid</span> <span class="o">=</span> <span class="n">IdBuilder</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>\
+<span class="gp">... </span>    <span class="o">.</span><span class="n">with_organisation</span><span class="p">(</span><span class="s1">&#39;Test Org&#39;</span><span class="p">)</span>\
+<span class="gp">... </span>    <span class="o">.</span><span class="n">with_division</span><span class="p">(</span><span class="s1">&#39;Test Division&#39;</span><span class="p">)</span>
+<span class="go"># IdBuilder will deal with slugging strings for us</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myid</span><span class="o">.</span><span class="n">ballot_id</span>
+<span class="go">&#39;local.test-org.test-division.2018-05-03&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myid</span><span class="o">.</span><span class="n">ids</span>
+<span class="go">[</span>
+<span class="go">    &#39;local.2018-05-03&#39;,</span>
+<span class="go">    &#39;local.test-org.2018-05-03&#39;,</span>
+<span class="go">    &#39;local.test-org.test-division.2018-05-03&#39;</span>
+<span class="go">]</span>
+
+
+<span class="go"># IdBuilder only allows values defined in the Reference Definition</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myid</span> <span class="o">=</span> <span class="n">IdBuilder</span><span class="p">(</span><span class="s1">&#39;gla&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">with_subtype</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="go">ValueError: Allowed values for subtype are (&#39;c&#39;, &#39;a&#39;)</span>
+
+
+<span class="go"># Group IDs can be created with partial information</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myid</span> <span class="o">=</span> <span class="n">IdBuilder</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">with_organisation</span><span class="p">(</span><span class="s1">&#39;Test Org&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myid</span><span class="o">.</span><span class="n">election_group_id</span>
+<span class="go">&#39;local.2018-05-03&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myid</span><span class="o">.</span><span class="n">organisation_group_id</span>
+<span class="go">&#39;local.test-org.2018-05-03&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myid</span><span class="o">.</span><span class="n">ballot_id</span>
+<span class="go">ValueError: election_type local must have a division in order to create a ballot id</span>
+
+
+<span class="go"># A Group ID object can be used to create multiple ballot IDs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divisions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;area1&quot;</span><span class="p">,</span> <span class="s2">&quot;area2&quot;</span><span class="p">,</span> <span class="s2">&quot;area3&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">org_id</span> <span class="o">=</span> <span class="n">IdBuilder</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">with_organisation</span><span class="p">(</span><span class="s1">&#39;Test Org&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">org_id</span><span class="o">.</span><span class="n">with_division</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">ballot_id</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">divisions</span><span class="p">]</span>
+<span class="go">[</span>
+<span class="go">    &#39;local.test-org.area1.2018-05-03&#39;,</span>
+<span class="go">    &#39;local.test-org.area2.2018-05-03&#39;,</span>
+<span class="go">    &#39;local.test-org.area3.2018-05-03&#39;</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="module-uk_election_ids.election_ids">
+<span id="validate"></span><h2>validate<a class="headerlink" href="#module-uk_election_ids.election_ids" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="uk_election_ids.election_ids.validate">
+<code class="descclassname">uk_election_ids.election_ids.</code><code class="descname">validate</code><span class="sig-paren">(</span><em>identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#uk_election_ids.election_ids.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate an identifier</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>identifier</strong> (<em>str</em>) – String identifier we want to validate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="id1">
+<h3>Usage Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">uk_election_ids.election_ids</span> <span class="k">import</span> <span class="n">validate</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validate</span><span class="p">(</span><span class="s1">&#39;local.2018-05-03&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validate</span><span class="p">(</span><span class="s1">&#39;foo.bar&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="data.html" class="btn btn-neutral float-right" title="Data Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="UK Election IDs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Chris Shaw
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
