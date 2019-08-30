@@ -1,5 +1,9 @@
 # Changelog
 
+## :package: [0.2.0](https://pypi.org/project/uk-election-ids/0.2.0/) - 2019-08-30
+
+Add validate function
+
 ## :package: [0.1.2](https://pypi.org/project/uk-election-ids/0.1.2/) - 2019-03-24
 
 Documentation Improvements
