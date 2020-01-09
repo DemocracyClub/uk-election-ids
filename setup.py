@@ -25,7 +25,7 @@ setup(
     long_description=_get_description(),
     long_description_content_type="text/markdown",
     extras_require={
-        "testing": ["python-coveralls"],
+        "testing": ["coveralls"],
         "development": ["sphinx", "sphinx_rtd_theme", "ghp-import"],
     },
     classifiers=[
