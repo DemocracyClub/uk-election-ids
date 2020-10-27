@@ -1,5 +1,9 @@
 # Changelog
 
+## :package: [0.3.0](https://pypi.org/project/uk-election-ids/0.3.0/) - 2020-10-27
+
+Added `senedd` election type
+
 ## :package: [0.2.1](https://pypi.org/project/uk-election-ids/0.2.1/) - 2019-10-16
 
 Tested on Python 3.8

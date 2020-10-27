@@ -30,6 +30,16 @@ ELECTION_TYPES = {
         "can_have_orgs": False,
         "can_have_divs": True,
     },
+    "senedd": {
+        "name": "Senedd Cymru elections",
+        "subtypes": [
+            {"name": "Constituencies", "election_subtype": "c"},
+            {"name": "Regions", "election_subtype": "r"},
+        ],
+        "default_voting_system": "AMS",
+        "can_have_orgs": False,
+        "can_have_divs": True,
+    },
     "sp": {
         "name": "Scottish Parliament elections",
         "subtypes": [

@@ -22,7 +22,7 @@ class TestIdBuilder(TestCase):
         self.assertEqual("parl.2018-05-03", election_id)
 
     def test_naw_sp_without_subtype(self):
-        for election_type in ("naw", "sp"):
+        for election_type in ("naw", "sp", "senedd"):
             id = IdBuilder(election_type, date(2018, 5, 3)).with_division(
                 "test-division"
             )
@@ -37,12 +37,12 @@ class TestIdBuilder(TestCase):
             self.assertEqual(["%s.2018-05-03" % (election_type)], id.ids)
 
     def test_naw_sp_invalid_subtype(self):
-        for election_type in ("naw", "sp"):
+        for election_type in ("naw", "sp", "senedd"):
             with self.assertRaises(ValueError):
                 IdBuilder(election_type, date(2018, 5, 3)).with_subtype("x")
 
     def test_naw_sp_valid_subtype_no_division(self):
-        for election_type in ("naw", "sp"):
+        for election_type in ("naw", "sp", "senedd"):
             id = IdBuilder(election_type, date(2018, 5, 3)).with_subtype("c")
             election_id = id.election_group_id
             self.assertEqual("%s.2018-05-03" % (election_type), election_id)
@@ -61,12 +61,12 @@ class TestIdBuilder(TestCase):
             )
 
     def test_naw_sp_with_org(self):
-        for election_type in ("naw", "sp"):
+        for election_type in ("naw", "sp", "senedd"):
             with self.assertRaises(ValueError):
                 IdBuilder(election_type, date(2018, 5, 3)).with_organisation("test-org")
 
     def test_naw_sp_with_division(self):
-        for election_type in ("naw", "sp"):
+        for election_type in ("naw", "sp", "senedd"):
             id = (
                 IdBuilder(election_type, date(2018, 5, 3))
                 .with_subtype("r")
