@@ -387,10 +387,6 @@ class TestIdBuilder(TestCase):
         obj2 = 7
         self.assertNotEqual(obj1, obj2)
 
-    def test_ref(self):
-        with self.assertRaises(NotImplementedError):
-            IdBuilder("ref", date(2018, 5, 3))
-
     def test_none(self):
         id = (
             IdBuilder("local", date(2018, 5, 3))
