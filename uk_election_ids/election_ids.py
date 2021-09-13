@@ -79,7 +79,7 @@ class IdBuilder:
 
         Args:
             election_type (str): May be one of
-                ``['europarl', 'gla', 'local', 'mayor', 'naw', 'nia', 'parl', 'pcc', 'sp', 'senedd']``
+                ``['europarl', 'gla', 'local', 'mayor', 'naw', 'nia', 'parl', 'pcc', 'sp', 'senedd', 'ref']``
             date (date|str): May be either a python date object,
                 or a string in 'Y-m-d' format.
                 ``myid = IdBuilder('local', date(2018, 5, 3))`` and
