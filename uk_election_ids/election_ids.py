@@ -187,6 +187,10 @@ class IdBuilder:
         """
         self._validate_contest_type(contest_type)
         if contest_type.lower() in ("by", "by election", "by-election"):
+            if self.election_type == "ref":
+                raise ValueError(
+                    "election_type %s may not have a by-election" % (self.election_type)
+                )
             self.contest_type = "by"
         return self
 
