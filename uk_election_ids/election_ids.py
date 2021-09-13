@@ -89,8 +89,6 @@ class IdBuilder:
         Returns:
             IdBuilder
         """
-        if election_type == "ref":
-            raise NotImplementedError()
         self._validate_election_type(election_type)
         self.election_type = election_type
         self.spec = RULES[self.election_type]

@@ -34,6 +34,7 @@ class TestValidator(TestCase):
         self.assertTrue(validate("gla.c.barnet-and-camden.by.2016-05-05"))
         self.assertTrue(validate("europarl.2014-05-22"))
         self.assertTrue(validate("europarl.uk-wales.2014-05-22"))
+        self.assertTrue(validate("ref.croydon.2021-10-07"))
 
     def test_invalid_ids(self):
         self.assertFalse(validate(7))  # not string
@@ -54,7 +55,6 @@ class TestValidator(TestCase):
             validate("gla.r.barnet-and-camden.2016-05-05")
         )  # invalid subtype
         self.assertFalse(validate("naw.x.2019-01-01"))  # invalid subtype
-        self.assertFalse(validate("ref.2019-01-01"))  # not implemented
         # too many clauses
         self.assertFalse(validate("naw.r.mid-and-west-wales.something-else.2016-05-05"))
         self.assertFalse(validate("sp.c.shetland-islands.something-else.2019-08-29"))

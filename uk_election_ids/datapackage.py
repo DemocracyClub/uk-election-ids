@@ -80,4 +80,11 @@ ELECTION_TYPES = {
         "can_have_orgs": True,
         "can_have_divs": False,
     },
+    "ref": {
+        "name": "Referendum elections",
+        "subtypes": [],
+        "default_voting_system": "FPTP",
+        "can_have_orgs": True,
+        "can_have_divs": True,
+    },
 }
