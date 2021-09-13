@@ -1,5 +1,8 @@
 # Changelog
 
+## :package: [0.4.1](https://pypi.org/project/uk-election-ids/0.4.1/) - 2021-09-13
+
+Add github action to publish new releases
 ## :package: [0.4.0](https://pypi.org/project/uk-election-ids/0.4.0/) - 2021-09-13
 
 Added `ref` election type
