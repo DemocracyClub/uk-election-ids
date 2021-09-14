@@ -1,5 +1,8 @@
 # Changelog
 
+## :package: [0.4.2](https://pypi.org/project/uk-election-ids/0.4.2/) - 2021-09-14
+
+Improved test coverage and dont allow by-referendum. Update documentation.
 ## :package: [0.4.1](https://pypi.org/project/uk-election-ids/0.4.1/) - 2021-09-13
 
 Add github action to publish new releases
