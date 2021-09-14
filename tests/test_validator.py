@@ -35,6 +35,8 @@ class TestValidator(TestCase):
         self.assertTrue(validate("europarl.2014-05-22"))
         self.assertTrue(validate("europarl.uk-wales.2014-05-22"))
         self.assertTrue(validate("ref.croydon.2021-10-07"))
+        self.assertTrue(validate("ref.croydon.some-division.2021-10-07"))
+        self.assertTrue(validate("ref.2021-10-07"))
 
     def test_invalid_ids(self):
         self.assertFalse(validate(7))  # not string
@@ -55,6 +57,9 @@ class TestValidator(TestCase):
             validate("gla.r.barnet-and-camden.2016-05-05")
         )  # invalid subtype
         self.assertFalse(validate("naw.x.2019-01-01"))  # invalid subtype
+        self.assertFalse(
+            validate("ref.croydon.by.2021-10-07")
+        )  # there is no such thing as a by-referendum
         # too many clauses
         self.assertFalse(validate("naw.r.mid-and-west-wales.something-else.2016-05-05"))
         self.assertFalse(validate("sp.c.shetland-islands.something-else.2019-08-29"))
@@ -69,3 +74,6 @@ class TestValidator(TestCase):
         self.assertFalse(validate("pcc.northumbria.something-else.2019-07-18"))
         self.assertFalse(validate("gla.c.barnet-and-camden.something-else.2016-05-05"))
         self.assertFalse(validate("europarl.uk-wales.something-else.2014-05-22"))
+        self.assertFalse(
+            validate("ref.croydon.some-division.something-else.2021-10-07")
+        )
