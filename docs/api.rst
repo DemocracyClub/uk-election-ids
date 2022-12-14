@@ -56,6 +56,12 @@ Usage Examples
         'local.test-org.area3.2018-05-03'
     ]
 
+    # Create an IdBuilder class from an existing ID
+    >>> ballot_paper_id = "local.foo.bar.2020-01-01"
+    >>> parsed = IdBuilder.from_id(ballot_paper_id)
+    >>> parsed.election_group_id
+    'local.2020-01-01'
+
 validate
 --------
 

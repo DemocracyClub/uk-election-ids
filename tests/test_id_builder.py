@@ -421,3 +421,18 @@ class TestIdBuilder(TestCase):
             .ballot_id
         )
         self.assertEqual(id1, id2)
+
+    def test_id_builder_from_id(self):
+        ballot_paper_id = "local.foo.bar.2020-01-01"
+        parsed = IdBuilder.from_id(ballot_paper_id)
+        self.assertEqual(parsed.election_group_id, "local.2020-01-01")
+        self.assertEqual(parsed.organisation_group_id, "local.foo.2020-01-01")
+
+        with self.assertRaises(NotImplementedError):
+            IdBuilder.from_id("ref.2020-01-01")
+
+        with self.assertRaises(ValueError):
+            IdBuilder.from_id("2020-01-01")
+
+        with self.assertRaises(TypeError):
+            IdBuilder.from_id(parsed)
