@@ -3,14 +3,15 @@ from .datapackage import ELECTION_TYPES
 from .parser import DataPackageParser
 from .slugger import slugify
 
-
 parser = DataPackageParser(ELECTION_TYPES)
 RULES = parser.build_rules()
 CONTEST_TYPES = ("by", "by election", "by-election", "election")
 
 
 def validate(identifier):
-    """Validate an identifier
+    """Validate an identifier. Internally calls
+    :func:`IdBuilder.from_id` IdBuilder.from_id and returns
+    True if the ID is built successfully.
 
     Args:
         identifier (str): String identifier we want to validate
@@ -18,57 +19,16 @@ def validate(identifier):
     Returns:
         bool
     """
-    if not isinstance(identifier, str):
-        return False
-
-    id_parts = identifier.split(".")
-
-    # must have at least an election type and a date
-    if len(id_parts) < 2:
-        return False
-
-    # check for invalid characters
-    for part in id_parts:
-        if slugify(part) != str(part):
-            return False
-
-    election_type = id_parts.pop(0)
-    date = id_parts.pop(-1)
 
     try:
-        builder = IdBuilder(election_type, date)
-    except (ValueError, NotImplementedError):
-        return False
-    if len(id_parts) == 0:
-        return True
-
-    try:
-        # use the builder object to validate the remaining parts,
-        # popping as we go
-        if id_parts[-1] == "by":
-            contest_type = id_parts.pop(-1)
-            builder = builder.with_contest_type("by")
-        if builder.spec.subtypes:
-            subtype = id_parts.pop(0)
-            builder = builder.with_subtype(subtype)
-        if id_parts and builder.spec.can_have_orgs:
-            org = id_parts.pop(0)
-            builder = builder.with_organisation(org)
-        if id_parts and builder.spec.can_have_divs:
-            div = id_parts.pop(0)
-            builder = builder.with_division(div)
-    except ValueError:
-        return False
-
-    # if we've got anything left over, that's wrong
-    if len(id_parts) > 0:
+        identifier = IdBuilder.from_id(identifier)
+    except (ValueError, NotImplementedError, TypeError):
         return False
 
     return True
 
 
 class IdBuilder:
-
     """
     Builder object for creating
     `Democracy Club Election Identifiers <https://elections.democracyclub.org.uk/reference_definition>`_.
@@ -411,3 +371,72 @@ class IdBuilder:
 
     def __eq__(self, other):
         return type(other) == IdBuilder and self.__dict__ == other.__dict__
+
+    @classmethod
+    def from_id(cls, identifier: str) -> "IdBuilder":
+        """
+        Parses a string in to an IdBuilder object. If an identifier
+        is returned (no exception is raised) the identifier can be assumed
+        to be valid and calls to :func:`validate` aren't needed.
+
+        Parameters:
+
+            identifier (str): An election ID
+
+        Returns:
+            IdBuilder
+
+        Raises:
+            ValueError: In various cases if the ID is invalid
+            NotImplementedError: If the election type isn't supported
+            TypeError: if the identifier isn't a string
+
+
+        """
+        if not isinstance(identifier, str):
+            raise TypeError("election_id must be a string")
+        id_parts = identifier.split(".")
+
+        if len(id_parts) < 2:
+            raise ValueError(
+                "Not enough parts: must have at least an election type and a date"
+            )
+
+        # check for invalid characters
+        for part in id_parts:
+            if slugify(part) != str(part):
+                raise ValueError("slug contains invalid characters")
+
+        election_type = id_parts.pop(0)
+        date = id_parts.pop(-1)
+
+        try:
+            builder = cls(election_type, date)
+        except (ValueError, NotImplementedError):
+            raise
+
+        if len(id_parts) == 0:
+            return builder
+
+        try:
+            # use the builder object to validate the remaining parts,
+            # popping as we go
+            if id_parts[-1] == "by":
+                contest_type = id_parts.pop(-1)
+                builder = builder.with_contest_type("by")
+            if builder.spec.subtypes:
+                subtype = id_parts.pop(0)
+                builder = builder.with_subtype(subtype)
+            if id_parts and builder.spec.can_have_orgs:
+                org = id_parts.pop(0)
+                builder = builder.with_organisation(org)
+            if id_parts and builder.spec.can_have_divs:
+                div = id_parts.pop(0)
+                builder = builder.with_division(div)
+        except ValueError:
+            raise
+
+        # if we've got anything left over, that's wrong
+        if len(id_parts) > 0:
+            raise ValueError(f"Remaining parts not valid: {id_parts}")
+        return builder
