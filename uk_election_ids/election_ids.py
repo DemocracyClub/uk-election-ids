@@ -22,7 +22,7 @@ def validate(identifier):
 
     try:
         identifier = IdBuilder.from_id(identifier)
-    except (ValueError, NotImplementedError, TypeError):
+    except (ValueError, TypeError):
         return False
 
     return True
@@ -388,7 +388,6 @@ class IdBuilder:
 
         Raises:
             ValueError: In various cases if the ID is invalid
-            NotImplementedError: If the election type isn't supported
             TypeError: if the identifier isn't a string
 
 
@@ -412,7 +411,7 @@ class IdBuilder:
 
         try:
             builder = cls(election_type, date)
-        except (ValueError, NotImplementedError):
+        except ValueError:
             raise
 
         if len(id_parts) == 0:

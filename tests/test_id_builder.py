@@ -491,9 +491,6 @@ class TestIdBuilder(TestCase):
         self.assertEqual(parsed.election_group_id, "local.2020-01-01")
         self.assertEqual(parsed.organisation_group_id, "local.foo.2020-01-01")
 
-        with self.assertRaises(NotImplementedError):
-            IdBuilder.from_id("ref.2020-01-01")
-
         with self.assertRaises(ValueError):
             IdBuilder.from_id("2020-01-01")
 
