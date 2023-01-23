@@ -26,7 +26,7 @@ setup(
     long_description_content_type="text/markdown",
     extras_require={
         "testing": ["coveralls"],
-        "development": ["sphinx", "sphinx_rtd_theme", "ghp-import"],
+        "development": ["sphinx", "sphinx_rtd_theme", "ghp-import", "pydantic"],
     },
     classifiers=[
         "License :: OSI Approved :: MIT License",
