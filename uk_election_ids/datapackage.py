@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 ELECTION_TYPES = {
     "parl": {
         "name": "UK Parliament elections",
@@ -77,3 +80,6 @@ ELECTION_TYPES = {
         "can_have_divs": True,
     },
 }
+
+voting_system_data = Path(__file__).parent / "data/voting_systems.json"
+VOTING_SYSTEMS = json.load(voting_system_data.open())["voting_systems"]
