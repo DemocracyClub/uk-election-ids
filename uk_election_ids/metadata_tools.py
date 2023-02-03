@@ -13,9 +13,9 @@ class MetaDataMatcher:
     """
 
     def __init__(
-        self,
-        election_id: str,
-        nation: Optional[str] = None,
+            self,
+            election_id: str,
+            nation: Optional[str] = None,
     ) -> None:
 
         self.nation = nation
@@ -75,6 +75,27 @@ class VotingSystemMatcher(MetaDataMatcher):
 
         default = data.get("default", None)
         if not default:
+            required_keys = data.keys()
+            raise ValueError(f"{id_part} requires {' or '.join(required_keys)}")
+
+        return data["default"]
+
+
+class IDRequirementsMatcher(MetaDataMatcher):
+    path = Path(__file__).parent / "data" / "id_requirements.json"
+    DATA = json.load(path.open())
+
+    def get_id_requirements(self):
+        id_part, data = self.match_id()
+        if self.nation:
+            if self.nation in data.get("nations", {}):
+                data = data["nations"][self.nation]
+
+        if data.get("dates"):
+            data = self.match_dates(data["dates"])
+
+        default = data.get("default", "")
+        if default == "":
             required_keys = data.keys()
             raise ValueError(f"{id_part} requires {' or '.join(required_keys)}")
 
