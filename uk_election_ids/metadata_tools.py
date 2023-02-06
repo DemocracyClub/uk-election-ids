@@ -1,5 +1,6 @@
 import datetime
 import json
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -25,6 +26,20 @@ class MetaDataMatcher:
 
     DATA = {"defaults": {}}
 
+    def _escape_id_part(self, id_part: str) -> str:
+        r"""
+        Allow use of our slightly modified patterns in the ID requirements json file
+        by escaping operator literals and appending additional operators to patterns where needed.
+
+        In our use case, '.' should represent a string literal (not just a match any)
+        and '*' should represent any number of any character (not just a repeater)
+
+        e.g. 'parl.*.by' becomes the slightly more esoteric 'parl\..*\.by'
+        """
+        id_part = id_part.replace(".", r"\.")  # full-stops converted to string literals
+        id_part = id_part.replace("*", ".*")  # asterisk uses "any number of any character" behaviour
+        return id_part
+
     def match_id(self):
         """
         Match the most specific key to this ID
@@ -36,9 +51,22 @@ class MetaDataMatcher:
             key=lambda identifier: identifier.count("."),
             reverse=True,
         )
+        matched_id_pattern = None
+        matched_default_value = None
+
         for id_part in ids_with_defaults:
-            if self.election_id.startswith(id_part):
-                return (id_part, self.DATA["defaults"][id_part])
+            pattern = re.compile(fr"""
+                ^                                   # String begins with id_part
+                ({self._escape_id_part(id_part)})   # e.g. parl.*.by, local, etc. - the bit we're interested in matching
+                (\..*|$)                            # id_part is followed by '.[any characters]' or nothing
+            """, re.VERBOSE)
+
+            if bool(pattern.search(self.election_id)):
+                matched_id_pattern = id_part
+                matched_default_value = self.DATA["defaults"].get(id_part)
+                break
+
+        return (matched_id_pattern, matched_default_value)
 
     def _parse_date(self, date: Optional[str]) -> datetime.date:
         if not date:

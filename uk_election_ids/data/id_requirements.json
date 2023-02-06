@@ -8,6 +8,51 @@
     }
   },
   "defaults": {
+    "parl.*.by": {
+      "default": "EA-2022",
+      "nations": {
+        "NIR": {
+          "dates": {
+            ":2002-08-31": {
+              "default": null
+            },
+            "2002-09-01:": {
+              "default": "EFA-2002"
+            }
+          }
+        },
+        "SCT": {
+          "dates": {
+            ":2023-01-15": {
+              "default": null
+            },
+            "2023-01-16:": {
+              "default": "EA-2022"
+            }
+          }
+        },
+        "ENG": {
+          "dates": {
+            ":2023-01-15": {
+              "default": null
+            },
+            "2023-01-16:": {
+              "default": "EA-2022"
+            }
+          }
+        },
+        "WLS": {
+          "dates": {
+            ":2023-01-15": {
+              "default": null
+            },
+            "2023-01-16:": {
+              "default": "EA-2022"
+            }
+          }
+        }
+      }
+    },
     "local": {
       "nations": {
         "NIR": {

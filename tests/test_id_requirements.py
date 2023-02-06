@@ -14,7 +14,7 @@ class TestIDRequirementsJson(TestCase):
         def iter_defaults(data: dict, parent=None):
             default = data.get("default", "")
             if default == "":
-                if not parent in ["dates", "nations"]:
+                if parent not in ["dates", "nations"]:
                     self.assertTrue(
                         any([key in ["nations", "dates"] for key in data.keys()]),
                         msg=f"{data} requires either a `default`, `nations` or `dates` key"
@@ -45,6 +45,10 @@ class TestIDRequirementsMatcher(TestCase):
         result = IDRequirementsMatcher("parl.2023-10-03", nation="ENG")
         assert result.get_id_requirements() == "EA-2022"
 
+        # UK parliamentary by-election post 2022 legislation
+        result = IDRequirementsMatcher("parl.stroud.by.2023-05-04", nation="ENG")
+        assert result.get_id_requirements() == "EA-2022"
+
     def test_matcher_scotland(self):
         # Local election pre 2022 legislation
         result = IDRequirementsMatcher("local.stroud.2022-05-04", nation="SCT")
@@ -61,6 +65,10 @@ class TestIDRequirementsMatcher(TestCase):
         # Scottish parliamentary election post 2022 legislation
         result = IDRequirementsMatcher("sp.c.2023-10-03", nation="SCT")
         assert result.get_id_requirements() is None
+
+        # UK parliamentary by-election post 2022 legislation
+        result = IDRequirementsMatcher("parl.stroud.by.2023-05-04", nation="SCT")
+        assert result.get_id_requirements() == "EA-2022"
 
     def test_matcher_wales(self):
         # Local election pre 2022 legislation
@@ -87,8 +95,12 @@ class TestIDRequirementsMatcher(TestCase):
         result = IDRequirementsMatcher("pcc.2023-05-04", nation="WLS")
         assert result.get_id_requirements() == "EA-2022"
 
+        # UK parliamentary by-election post 2022 legislation
+        result = IDRequirementsMatcher("parl.stroud.by.2023-05-04", nation="WLS")
+        assert result.get_id_requirements() == "EA-2022"
+
     def test_matcher_ni(self):
-        # Paliamentary election pre 2022 legislation
+        # Parliamentary election pre 2022 legislation
         result = IDRequirementsMatcher("parl.2022-05-04", nation="NIR")
         assert result.get_id_requirements() == "EFA-2002"
 
@@ -102,4 +114,8 @@ class TestIDRequirementsMatcher(TestCase):
 
         # NIA election post 2002 legislation
         result = IDRequirementsMatcher("nia.2002-11-28", nation="NIR")
+        assert result.get_id_requirements() == "EFA-2002"
+
+        # UK parliamentary by-election post 2022 legislation
+        result = IDRequirementsMatcher("parl.stroud.by.2023-05-04", nation="NIR")
         assert result.get_id_requirements() == "EFA-2002"
