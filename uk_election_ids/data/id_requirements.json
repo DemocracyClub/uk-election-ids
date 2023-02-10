@@ -5,6 +5,12 @@
     },
     "EA-2022": {
       "name": "Elections Act 2022"
+    },
+    "pilot-2018": {
+      "name": "2018 voter ID pilot scheme"
+    },
+    "pilot-2019": {
+      "name": "2018 voter ID pilot scheme"
     }
   },
   "defaults": {
@@ -52,6 +58,12 @@
           }
         }
       }
+    },
+    "local.(bromley|gosport|swindon|watford|woking).*.2018-05-03": {
+      "default": "pilot-2018"
+    },
+    "local.(braintree|broxtowe|craven|derby|mid-sussex|north-kesteven|north-west-leicestershire|pendle|watford|woking).*.2019-05-02": {
+      "default": "pilot-2019"
     },
     "local": {
       "nations": {

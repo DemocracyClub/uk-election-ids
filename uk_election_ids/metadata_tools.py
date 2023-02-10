@@ -31,13 +31,16 @@ class MetaDataMatcher:
         Allow use of our slightly modified patterns in the ID requirements json file
         by escaping operator literals and appending additional operators to patterns where needed.
 
-        In our use case, '.' should represent a string literal (not just a match any)
-        and '*' should represent any number of any character (not just a repeater)
+        In our use case, '*' represents 0-many wildcards and '.' represents a string literal.
+        Additionally, if wildcard is empty, regex needs reduced '.' literals .
 
-        e.g. 'parl.*.by' becomes the slightly more esoteric 'parl\..*\.by'
+        i.e. 'parl.*.by' becomes the slightly more esoteric 'parl(\..*)?\.by' where:
+        \. represents a literal '.', always present at the start of a wildcard
+        (\..*) captures a sequence of "[any characters]."
+        ? captures a group between 0-1 times
         """
-        id_part = id_part.replace(".", r"\.")  # full-stops converted to string literals
-        id_part = id_part.replace("*", ".*")  # asterisk uses "any number of any character" behaviour
+        id_part = id_part.replace("-", r"\-")  # prevent '-' from being interpreted as range indicator
+        id_part = id_part.replace(".*.", r"\.(.*\.)?")
         return id_part
 
     def match_id(self):

@@ -49,6 +49,22 @@ class TestIDRequirementsMatcher(TestCase):
         result = IDRequirementsMatcher("parl.stroud.by.2023-05-04", nation="ENG")
         assert result.get_id_requirements() == "EA-2022"
 
+        # Local election on 2018 pilot scheme
+        result = IDRequirementsMatcher("local.woking.2018-05-03", nation="ENG")
+        assert result.get_id_requirements() == "pilot-2018"
+
+        # Local election not on 2018 pilot scheme
+        result = IDRequirementsMatcher("local.stroud.2018-05-03", nation="ENG")
+        assert result.get_id_requirements() is None
+
+        # Local election on 2019 pilot scheme
+        result = IDRequirementsMatcher("local.woking.2019-05-02", nation="ENG")
+        assert result.get_id_requirements() == "pilot-2019"
+
+        # Local election not on 2019 pilot scheme
+        result = IDRequirementsMatcher("local.stroud.2019-05-02", nation="ENG")
+        assert result.get_id_requirements() is None
+
     def test_matcher_scotland(self):
         # Local election pre 2022 legislation
         result = IDRequirementsMatcher("local.stroud.2022-05-04", nation="SCT")
