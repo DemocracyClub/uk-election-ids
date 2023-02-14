@@ -1,0 +1,165 @@
+{
+  "id_type": {
+    "EFA-2002": {
+      "name": "Electoral Fraud (Northern Ireland) Act 2002"
+    },
+    "EA-2022": {
+      "name": "Elections Act 2022"
+    },
+    "pilot-2018": {
+      "name": "2018 voter ID pilot scheme"
+    },
+    "pilot-2019": {
+      "name": "2018 voter ID pilot scheme"
+    }
+  },
+  "defaults": {
+    "parl.*.by": {
+      "default": "EA-2022",
+      "nations": {
+        "NIR": {
+          "dates": {
+            ":2002-08-31": {
+              "default": null
+            },
+            "2002-09-01:": {
+              "default": "EFA-2002"
+            }
+          }
+        },
+        "SCT": {
+          "dates": {
+            ":2023-01-15": {
+              "default": null
+            },
+            "2023-01-16:": {
+              "default": "EA-2022"
+            }
+          }
+        },
+        "ENG": {
+          "dates": {
+            ":2023-01-15": {
+              "default": null
+            },
+            "2023-01-16:": {
+              "default": "EA-2022"
+            }
+          }
+        },
+        "WLS": {
+          "dates": {
+            ":2023-01-15": {
+              "default": null
+            },
+            "2023-01-16:": {
+              "default": "EA-2022"
+            }
+          }
+        }
+      }
+    },
+    "local.(bromley|gosport|swindon|watford|woking).*.2018-05-03": {
+      "default": "pilot-2018"
+    },
+    "local.(braintree|broxtowe|craven|derby|mid-sussex|north-kesteven|north-west-leicestershire|pendle|watford|woking).*.2019-05-02": {
+      "default": "pilot-2019"
+    },
+    "local": {
+      "nations": {
+        "NIR": {
+          "default": "EFA-2002",
+          "dates": {
+            ":2002-08-31": {
+              "default": null
+            },
+            "2002-09-01:": {
+              "default": "EFA-2002"
+            }
+          }
+        },
+        "SCT": {
+          "default": null
+        },
+        "ENG": {
+          "default": "EA-2022",
+          "dates": {
+            ":2023-01-15": {
+              "default": null
+            },
+            "2023-01-16:": {
+              "default": "EA-2022"
+            }
+          }
+        },
+        "WLS": {
+          "default": null
+        }
+      }
+    },
+    "parl": {
+      "default": "EA-2022",
+      "nations": {
+        "NIR": {
+          "dates": {
+            ":2002-08-31": {
+              "default": null
+            },
+            "2002-09-01:": {
+              "default": "EFA-2002"
+            }
+          }
+        }
+      },
+      "dates": {
+        ":2023-09-30": {
+          "default": null
+        },
+        "2023-10-01:": {
+          "default": "EA-2022"
+        }
+      }
+    },
+    "nia": {
+      "default": "EFA-2002"
+    },
+    "europarl": {
+      "default": null
+    },
+    "naw": {
+      "default": null
+    },
+    "senedd": {
+      "default": null
+    },
+    "sp.c": {
+      "default": null
+    },
+    "sp.r": {
+      "default": null
+    },
+    "gla.c": {
+      "default": "EA-2022"
+    },
+    "gla": {
+      "default": "EA-2022"
+    },
+    "pcc": {
+      "default": "EA-2022",
+      "dates": {
+        ":2023-01-15": {
+          "default": null
+        },
+        "2023-01-16:": {
+          "default": "EA-2022"
+        }
+      }
+    },
+    "mayor": {
+      "default": "EA-2022"
+    },
+    "ref": {
+      "default": null
+    }
+  }
+}
