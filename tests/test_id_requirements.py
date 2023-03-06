@@ -65,6 +65,14 @@ class TestIDRequirementsMatcher(TestCase):
         result = IDRequirementsMatcher("local.stroud.2019-05-02", nation="ENG")
         assert result.get_id_requirements() is None
 
+        # GLA pre-2022 legislation
+        result = IDRequirementsMatcher("gla.c.brent-and-harrow.2016-05-05", nation="ENG")
+        assert result.get_id_requirements() is None
+
+        # GLA post 2022 legislation
+        result = IDRequirementsMatcher("gla.c.brent-and-harrow.2023-05-04", nation="ENG")
+        assert result.get_id_requirements() == "EA-2022"
+
     def test_matcher_scotland(self):
         # Local election pre 2022 legislation
         result = IDRequirementsMatcher("local.stroud.2022-05-04", nation="SCT")
@@ -126,6 +134,10 @@ class TestIDRequirementsMatcher(TestCase):
 
         # Parliamentary election pre 2002 legislation
         result = IDRequirementsMatcher("parl.2001-11-28", nation="NIR")
+        assert result.get_id_requirements() is None
+
+        # NIA election pre 2002 legislation
+        result = IDRequirementsMatcher("nia.2001-11-28", nation="NIR")
         assert result.get_id_requirements() is None
 
         # NIA election post 2002 legislation
