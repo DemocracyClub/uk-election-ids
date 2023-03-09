@@ -83,3 +83,5 @@ ELECTION_TYPES = {
 
 voting_system_data = Path(__file__).parent / "data/voting_systems.json"
 VOTING_SYSTEMS = json.load(voting_system_data.open())["voting_systems"]
+id_requirements_data = Path(__file__).parent / "data/id_requirements.json"
+ID_REQUIREMENTS = json.load(id_requirements_data.open())["id_type"]
