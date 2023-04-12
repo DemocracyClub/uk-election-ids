@@ -35,7 +35,6 @@ class TestValidator(TestCase):
         self.assertTrue(validate("europarl.2014-05-22"))
         self.assertTrue(validate("europarl.uk-wales.2014-05-22"))
         self.assertTrue(validate("ref.croydon.2021-10-07"))
-        self.assertTrue(validate("ref.croydon.some-division.2021-10-07"))
         self.assertTrue(validate("ref.2021-10-07"))
 
     def test_invalid_ids(self):

@@ -202,18 +202,6 @@ class TestIdBuilder(TestCase):
         with self.assertRaises(ValueError):
             IdBuilder("ref", date(2018, 5, 3)).with_subtype("x")
 
-    def test_ref_no_org_with_div(self):
-        id = IdBuilder("ref", date(2018, 5, 3)).with_division("test-division")
-        with self.assertRaises(ValueError):
-            id.election_group_id
-        with self.assertRaises(ValueError):
-            id.subtype_group_id
-        with self.assertRaises(ValueError):
-            id.organisation_group_id
-        with self.assertRaises(ValueError):
-            id.ballot_id
-        self.assertEqual([], id.ids)
-
     def test_ref_no_org_no_div(self):
         id = IdBuilder("ref", date(2018, 5, 3))
         election_id = id.election_group_id
@@ -234,32 +222,7 @@ class TestIdBuilder(TestCase):
             id.subtype_group_id
         organisation_id = id.organisation_group_id
         self.assertEqual("ref.test-org.2018-05-03", organisation_id)
-        with self.assertRaises(ValueError):
-            id.ballot_id
         self.assertEqual(["ref.2018-05-03", "ref.test-org.2018-05-03"], id.ids)
-
-    def test_ref_with_org_with_div(self):
-        id = (
-            IdBuilder("ref", date(2018, 5, 3))
-            .with_organisation("test-org")
-            .with_division("test-division")
-        )
-        election_id = id.election_group_id
-        self.assertEqual("ref.2018-05-03", election_id)
-        with self.assertRaises(ValueError):
-            id.subtype_group_id
-        organisation_id = id.organisation_group_id
-        self.assertEqual("ref.test-org.2018-05-03", organisation_id)
-        ballot_id = id.ballot_id
-        self.assertEqual("ref.test-org.test-division.2018-05-03", ballot_id)
-        self.assertEqual(
-            [
-                "ref.2018-05-03",
-                "ref.test-org.2018-05-03",
-                "ref.test-org.test-division.2018-05-03",
-            ],
-            id.ids,
-        )
 
     def test_ref_with_org_with_by_contest_type(self):
         with self.assertRaises(ValueError):
@@ -496,3 +459,8 @@ class TestIdBuilder(TestCase):
 
         with self.assertRaises(TypeError):
             IdBuilder.from_id(parsed)
+
+    def test_ref_id_can_have_ballot(self):
+        ballot_paper_id = "ref.bristol.2022-05-05"
+        parsed = IdBuilder.from_id(ballot_paper_id)
+        self.assertEqual(parsed.ballot_id, "ref.bristol.2022-05-05")

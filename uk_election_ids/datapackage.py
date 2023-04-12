@@ -77,7 +77,7 @@ ELECTION_TYPES = {
         "name": "Referendum elections",
         "subtypes": [],
         "can_have_orgs": True,
-        "can_have_divs": True,
+        "can_have_divs": False,
     },
 }
 
