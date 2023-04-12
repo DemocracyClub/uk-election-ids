@@ -16,8 +16,10 @@ class TestVotingSystemJson(TestCase):
             if not default:
                 if not parent in ["dates", "nations"]:
                     self.assertTrue(
-                        any([key in ["nations", "dates"] for key in data.keys()]),
-                        msg=f"{data} requires either a `default`, `nations` or `dates` key"
+                        any(
+                            [key in ["nations", "dates"] for key in data.keys()]
+                        ),
+                        msg=f"{data} requires either a `default`, `nations` or `dates` key",
                     )
             for key, value in data.items():
                 if isinstance(value, dict):

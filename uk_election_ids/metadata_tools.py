@@ -14,11 +14,10 @@ class MetaDataMatcher:
     """
 
     def __init__(
-            self,
-            election_id: str,
-            nation: Optional[str] = None,
+        self,
+        election_id: str,
+        nation: Optional[str] = None,
     ) -> None:
-
         self.nation = nation
         self.election_id = election_id
         self.parts = self.election_id.split(".")
@@ -39,7 +38,9 @@ class MetaDataMatcher:
         (\..*) captures a sequence of "[any characters]."
         ? captures a group between 0-1 times
         """
-        id_part = id_part.replace("-", r"\-")  # prevent '-' from being interpreted as range indicator
+        id_part = id_part.replace(
+            "-", r"\-"
+        )  # prevent '-' from being interpreted as range indicator
         id_part = id_part.replace(".*.", r"\.(.*\.)?")
         return id_part
 
@@ -58,11 +59,14 @@ class MetaDataMatcher:
         matched_default_value = None
 
         for id_part in ids_with_defaults:
-            pattern = re.compile(fr"""
+            pattern = re.compile(
+                rf"""
                 ^                                   # String begins with id_part
                 ({self._escape_id_part(id_part)})   # e.g. parl.*.by, local, etc. - the bit we're interested in matching
                 (\..*|$)                            # id_part is followed by '.[any characters]' or nothing
-            """, re.VERBOSE)
+            """,
+                re.VERBOSE,
+            )
 
             if bool(pattern.search(self.election_id)):
                 matched_id_pattern = id_part
@@ -77,7 +81,6 @@ class MetaDataMatcher:
         return datetime.datetime.strptime(date, "%Y-%m-%d").date()
 
     def match_dates(self, data):
-
         for key, value in data.items():
             start, end = [self._parse_date(x) for x in key.split(":")]
             if not start:

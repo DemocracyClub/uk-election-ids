@@ -17,7 +17,9 @@ class DataPackageParser:
 
     def build_subtypes(self, record):
         if record["subtypes"]:
-            return tuple(subtype["election_subtype"] for subtype in record["subtypes"])
+            return tuple(
+                subtype["election_subtype"] for subtype in record["subtypes"]
+            )
         return None
 
     def build_can_have_orgs(self, record):

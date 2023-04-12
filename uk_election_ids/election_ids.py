@@ -149,7 +149,8 @@ class IdBuilder:
         if contest_type.lower() in ("by", "by election", "by-election"):
             if self.election_type == "ref":
                 raise ValueError(
-                    "election_type %s may not have a by-election" % (self.election_type)
+                    "election_type %s may not have a by-election"
+                    % (self.election_type)
                 )
             self.contest_type = "by"
         return self
@@ -163,7 +164,10 @@ class IdBuilder:
         return True
 
     def _validate_subtype(self, subtype):
-        if isinstance(self.spec.subtypes, tuple) and subtype not in self.spec.subtypes:
+        if (
+            isinstance(self.spec.subtypes, tuple)
+            and subtype not in self.spec.subtypes
+        ):
             raise ValueError(
                 "Allowed values for subtype are %s" % (str(self.spec.subtypes))
             )
@@ -176,7 +180,8 @@ class IdBuilder:
     def _validate_organisation(self, organisation):
         if not self.spec.can_have_orgs and organisation:
             raise ValueError(
-                "election_type %s may not have an organisation" % (self.election_type)
+                "election_type %s may not have an organisation"
+                % (self.election_type)
             )
         return True
 
@@ -190,7 +195,8 @@ class IdBuilder:
             )
         if not can_have_divs and division:
             raise ValueError(
-                "election_type %s may not have a division" % (self.election_type)
+                "election_type %s may not have a division"
+                % (self.election_type)
             )
         return True
 
@@ -199,7 +205,8 @@ class IdBuilder:
             return True
         if not contest_type.lower() in CONTEST_TYPES:
             raise ValueError(
-                "Allowed values for contest_type are %s" % (str(list(CONTEST_TYPES)))
+                "Allowed values for contest_type are %s"
+                % (str(list(CONTEST_TYPES)))
             )
         return True
 
@@ -235,11 +242,13 @@ class IdBuilder:
     def _validate_for_subtype_group_id(self):
         if not isinstance(self.spec.subtypes, tuple):
             raise ValueError(
-                "Can't create subtype id for election_type %s" % (self.election_type)
+                "Can't create subtype id for election_type %s"
+                % (self.election_type)
             )
         if isinstance(self.spec.subtypes, tuple) and not self.subtype:
             raise ValueError(
-                "Subtype must be specified for election_type %s" % (self.election_type)
+                "Subtype must be specified for election_type %s"
+                % (self.election_type)
             )
         self._validate_subtype(self.subtype)
         return True
@@ -262,7 +271,8 @@ class IdBuilder:
         # validation checks specifically relevant to creating an organisation group id
         if isinstance(self.spec.subtypes, tuple) and not self.subtype:
             raise ValueError(
-                "Subtype must be specified for election_type %s" % (self.election_type)
+                "Subtype must be specified for election_type %s"
+                % (self.election_type)
             )
         self._validate_subtype(self.subtype)
         if not self.spec.can_have_orgs:
@@ -297,7 +307,8 @@ class IdBuilder:
         # validation checks specifically relevant to creating a ballot id
         if isinstance(self.spec.subtypes, tuple) and not self.subtype:
             raise ValueError(
-                "Subtype must be specified for election_type %s" % (self.election_type)
+                "Subtype must be specified for election_type %s"
+                % (self.election_type)
             )
         self._validate_subtype(self.subtype)
         if self.spec.can_have_orgs and not self.organisation:

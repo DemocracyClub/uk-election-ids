@@ -21,13 +21,20 @@ setup(
     license="MIT",
     url="https://github.com/DemocracyClub/uk-election-ids/",
     packages=["uk_election_ids"],
-    package_data={'uk_election_ids':  ['data/*.json']},
+    package_data={"uk_election_ids": ["data/*.json"]},
     description="Create Democracy Club Election Identifiers",
     long_description=_get_description(),
     long_description_content_type="text/markdown",
     extras_require={
         "testing": ["coveralls"],
-        "development": ["sphinx", "sphinx_rtd_theme", "ghp-import", "pydantic"],
+        "development": [
+            "sphinx",
+            "sphinx_rtd_theme",
+            "ghp-import",
+            "pydantic",
+            "black==23.3.0",
+            "ruff==0.0.261",
+        ],
     },
     classifiers=[
         "License :: OSI Approved :: MIT License",

@@ -50,8 +50,16 @@ ELECTION_TYPES = {
     "gla": {
         "name": "Greater London Assembly elections",
         "subtypes": [
-            {"name": "Constituencies", "election_subtype": "c", "can_have_divs": True},
-            {"name": "Additional", "election_subtype": "a", "can_have_divs": False},
+            {
+                "name": "Constituencies",
+                "election_subtype": "c",
+                "can_have_divs": True,
+            },
+            {
+                "name": "Additional",
+                "election_subtype": "a",
+                "can_have_divs": False,
+            },
         ],
         "can_have_orgs": False,
     },

@@ -63,7 +63,9 @@ class TestIdBuilder(TestCase):
     def test_naw_sp_with_org(self):
         for election_type in ("naw", "sp", "senedd"):
             with self.assertRaises(ValueError):
-                IdBuilder(election_type, date(2018, 5, 3)).with_organisation("test-org")
+                IdBuilder(election_type, date(2018, 5, 3)).with_organisation(
+                    "test-org"
+                )
 
     def test_naw_sp_with_division(self):
         for election_type in ("naw", "sp", "senedd"):
@@ -94,7 +96,9 @@ class TestIdBuilder(TestCase):
     def test_nia_parl_europarl_with_org(self):
         for election_type in ("nia", "parl", "europarl"):
             with self.assertRaises(ValueError):
-                IdBuilder(election_type, date(2018, 5, 3)).with_organisation("test-org")
+                IdBuilder(election_type, date(2018, 5, 3)).with_organisation(
+                    "test-org"
+                )
 
     def test_nia_parl_europarl_with_subtype(self):
         for election_type in ("nia", "parl", "europarl"):
@@ -126,7 +130,9 @@ class TestIdBuilder(TestCase):
             with self.assertRaises(ValueError):
                 id.organisation_group_id
             ballot_id = id.ballot_id
-            self.assertEqual("%s.test-division.2018-05-03" % (election_type), ballot_id)
+            self.assertEqual(
+                "%s.test-division.2018-05-03" % (election_type), ballot_id
+            )
             self.assertEqual(
                 [
                     "%s.2018-05-03" % (election_type),
@@ -173,7 +179,9 @@ class TestIdBuilder(TestCase):
         self.assertEqual("local.test-org.2018-05-03", organisation_id)
         with self.assertRaises(ValueError):
             id.ballot_id
-        self.assertEqual(["local.2018-05-03", "local.test-org.2018-05-03"], id.ids)
+        self.assertEqual(
+            ["local.2018-05-03", "local.test-org.2018-05-03"], id.ids
+        )
 
     def test_local_with_org_with_div(self):
         id = (
@@ -251,7 +259,9 @@ class TestIdBuilder(TestCase):
                 id.subtype_group_id
             organisation_id = id.organisation_group_id
             ballot_id = id.ballot_id
-            self.assertEqual("%s.test-org.2018-05-03" % (election_type), ballot_id)
+            self.assertEqual(
+                "%s.test-org.2018-05-03" % (election_type), ballot_id
+            )
             self.assertEqual(organisation_id, ballot_id)
             self.assertEqual(
                 [
@@ -333,7 +343,8 @@ class TestIdBuilder(TestCase):
         ballot_id = id.ballot_id
         self.assertEqual("gla.c.test-div.2018-05-03", ballot_id)
         self.assertEqual(
-            ["gla.2018-05-03", "gla.c.2018-05-03", "gla.c.test-div.2018-05-03"], id.ids
+            ["gla.2018-05-03", "gla.c.2018-05-03", "gla.c.test-div.2018-05-03"],
+            id.ids,
         )
 
     def test_by_elections(self):
@@ -349,7 +360,9 @@ class TestIdBuilder(TestCase):
             organisation_id = id.organisation_group_id
             self.assertEqual("local.test-org.2018-05-03", organisation_id)
             ballot_id = id.ballot_id
-            self.assertEqual("local.test-org.test-division.by.2018-05-03", ballot_id)
+            self.assertEqual(
+                "local.test-org.test-division.by.2018-05-03", ballot_id
+            )
             self.assertEqual(
                 [
                     "local.2018-05-03",
@@ -372,7 +385,9 @@ class TestIdBuilder(TestCase):
             organisation_id = id.organisation_group_id
             self.assertEqual("local.test-org.2018-05-03", organisation_id)
             ballot_id = id.ballot_id
-            self.assertEqual("local.test-org.test-division.2018-05-03", ballot_id)
+            self.assertEqual(
+                "local.test-org.test-division.2018-05-03", ballot_id
+            )
             self.assertEqual(
                 [
                     "local.2018-05-03",
@@ -405,7 +420,9 @@ class TestIdBuilder(TestCase):
             .with_organisation("test-org")
             .with_division("test-division")
         )
-        obj2 = IdBuilder("local", date(2018, 5, 3)).with_organisation("test-org")
+        obj2 = IdBuilder("local", date(2018, 5, 3)).with_organisation(
+            "test-org"
+        )
         self.assertNotEqual(obj1, obj2)
 
     def test_eq_different_types(self):
@@ -423,7 +440,9 @@ class TestIdBuilder(TestCase):
             .with_organisation("test-org")
             .with_division(None)
         )
-        self.assertEqual(["local.2018-05-03", "local.test-org.2018-05-03"], id.ids)
+        self.assertEqual(
+            ["local.2018-05-03", "local.test-org.2018-05-03"], id.ids
+        )
 
     def test_empty(self):
         id = (
@@ -431,7 +450,9 @@ class TestIdBuilder(TestCase):
             .with_organisation("test-org")
             .with_division("")
         )
-        self.assertEqual(["local.2018-05-03", "local.test-org.2018-05-03"], id.ids)
+        self.assertEqual(
+            ["local.2018-05-03", "local.test-org.2018-05-03"], id.ids
+        )
 
     def test_slugger(self):
         id1 = (
