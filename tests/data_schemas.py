@@ -1,7 +1,5 @@
-import json
-from dataclasses import Field
 from pathlib import Path
-from typing import Dict, Optional, Any, Type
+from typing import Dict, Optional
 
 from pydantic import BaseModel, HttpUrl, root_validator
 
@@ -30,9 +28,8 @@ class VotingSystemSchema(BaseModel):
         voting_system_slugs = values["voting_systems"].keys()
 
         def _recurse_defaults(d: dict):
-            if value := d.get("default"):
-                if value not in voting_system_slugs:
-                    raise ValueError(f"'{value}' is not a valid voting system")
+            if (value := d.get("default")) and value not in voting_system_slugs:
+                raise ValueError(f"'{value}' is not a valid voting system")
             for k, v in d.items():
                 if isinstance(v, dict):
                     _recurse_defaults(v)

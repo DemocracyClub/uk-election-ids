@@ -1,4 +1,6 @@
+import contextlib
 from datetime import datetime
+
 from .datapackage import ELECTION_TYPES
 from .parser import DataPackageParser
 from .slugger import slugify
@@ -70,8 +72,7 @@ class IdBuilder:
     def _can_have_divs(self):
         if isinstance(self.spec.can_have_divs, (bool,)):
             return self.spec.can_have_divs
-        else:
-            return self.spec.can_have_divs[self.subtype]
+        return self.spec.can_have_divs[self.subtype]
 
     def with_subtype(self, subtype):
         """Add a subtype segment
@@ -203,7 +204,7 @@ class IdBuilder:
     def _validate_contest_type(self, contest_type):
         if not contest_type:
             return True
-        if not contest_type.lower() in CONTEST_TYPES:
+        if contest_type.lower() not in CONTEST_TYPES:
             raise ValueError(
                 "Allowed values for contest_type are %s"
                 % (str(list(CONTEST_TYPES)))
@@ -352,22 +353,16 @@ class IdBuilder:
         """
         ids = []
 
-        try:
+        with contextlib.suppress(ValueError):
             ids.append(self.election_group_id)
-        except ValueError:
-            pass
 
         if isinstance(self.spec.subtypes, tuple):
-            try:
+            with contextlib.suppress(ValueError):
                 ids.append(self.subtype_group_id)
-            except ValueError:
-                pass
 
         if self.spec.can_have_orgs:
-            try:
+            with contextlib.suppress(ValueError):
                 ids.append(self.organisation_group_id)
-            except ValueError:
-                pass
 
         try:
             if self.ballot_id not in ids:
@@ -432,7 +427,7 @@ class IdBuilder:
             # use the builder object to validate the remaining parts,
             # popping as we go
             if id_parts[-1] == "by":
-                contest_type = id_parts.pop(-1)
+                id_parts.pop(-1)
                 builder = builder.with_contest_type("by")
             if builder.spec.subtypes:
                 subtype = id_parts.pop(0)

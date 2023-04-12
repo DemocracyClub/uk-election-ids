@@ -1,6 +1,5 @@
 from collections import namedtuple
 
-
 IdSpec = namedtuple("IdSpec", ["subtypes", "can_have_orgs", "can_have_divs"])
 
 
@@ -25,20 +24,18 @@ class DataPackageParser:
     def build_can_have_orgs(self, record):
         if "can_have_orgs" in record:
             return record["can_have_orgs"]
-        else:
-            return {
-                subtype["election_subtype"]: subtype["can_have_orgs"]
-                for subtype in record["subtypes"]
-            }
+        return {
+            subtype["election_subtype"]: subtype["can_have_orgs"]
+            for subtype in record["subtypes"]
+        }
 
     def build_can_have_divs(self, record):
         if "can_have_divs" in record:
             return record["can_have_divs"]
-        else:
-            return {
-                subtype["election_subtype"]: subtype["can_have_divs"]
-                for subtype in record["subtypes"]
-            }
+        return {
+            subtype["election_subtype"]: subtype["can_have_divs"]
+            for subtype in record["subtypes"]
+        }
 
     def build_rules(self):
         rules = {}

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from unittest import TestCase
+
 from uk_election_ids.slugger import slugify
 
 

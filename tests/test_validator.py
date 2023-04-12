@@ -1,4 +1,5 @@
 from unittest import TestCase
+
 from uk_election_ids.election_ids import validate
 
 

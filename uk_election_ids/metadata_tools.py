@@ -88,9 +88,8 @@ class MetaDataMatcher:
             if not end:
                 end = datetime.date(year=9999, month=12, day=31)
 
-            if self.date >= start:
-                if self.date < end:
-                    return value
+            if self.date >= start and self.date < end:
+                return value
         raise ValueError("No date for range")
 
 
@@ -100,9 +99,8 @@ class VotingSystemMatcher(MetaDataMatcher):
 
     def get_voting_system(self):
         id_part, data = self.match_id()
-        if self.nation:
-            if self.nation in data.get("nations", {}):
-                data = data["nations"][self.nation]
+        if self.nation and self.nation in data.get("nations", {}):
+            data = data["nations"][self.nation]
 
         if data.get("dates"):
             data = self.match_dates(data["dates"])
@@ -121,9 +119,8 @@ class IDRequirementsMatcher(MetaDataMatcher):
 
     def get_id_requirements(self):
         id_part, data = self.match_id()
-        if self.nation:
-            if self.nation in data.get("nations", {}):
-                data = data["nations"][self.nation]
+        if self.nation and self.nation in data.get("nations", {}):
+            data = data["nations"][self.nation]
 
         if data.get("dates"):
             data = self.match_dates(data["dates"])

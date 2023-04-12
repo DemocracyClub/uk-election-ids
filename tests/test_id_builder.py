@@ -1,5 +1,6 @@
 from datetime import date
 from unittest import TestCase
+
 from uk_election_ids.election_ids import IdBuilder
 
 

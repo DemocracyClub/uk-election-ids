@@ -13,14 +13,13 @@ class TestVotingSystemJson(TestCase):
 
         def iter_defaults(data: dict, parent=None):
             default = data.get("default", None)
-            if not default:
-                if not parent in ["dates", "nations"]:
-                    self.assertTrue(
-                        any(
-                            [key in ["nations", "dates"] for key in data.keys()]
-                        ),
-                        msg=f"{data} requires either a `default`, `nations` or `dates` key",
-                    )
+            if not default and parent not in ["dates", "nations"]:
+                self.assertTrue(
+                    any(
+                        [key in ["nations", "dates"] for key in data]
+                    ),
+                    msg=f"{data} requires either a `default`, `nations` or `dates` key",
+                )
             for key, value in data.items():
                 if isinstance(value, dict):
                     iter_defaults(value, parent=key)
