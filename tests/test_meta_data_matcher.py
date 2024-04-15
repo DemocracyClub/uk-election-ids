@@ -26,6 +26,7 @@ class TestMetaDataMatcher(TestCase):
         )
         assert matcher.match_id()[0] is None
 
+
 class TestPostalVotingRequirements(TestCase):
     def test_postal_voting(self):
         matcher = PostalVotingRequirementsMatcher("parl.stroud.2024-05-02")
@@ -34,5 +35,7 @@ class TestPostalVotingRequirements(TestCase):
         matcher = PostalVotingRequirementsMatcher("parl.stroud.2019-05-02")
         self.assertEqual(matcher.get_postal_voting_requirements(), "RPA2000")
 
-        matcher = PostalVotingRequirementsMatcher("parl.stroud.2019-05-02", nation="NIR")
+        matcher = PostalVotingRequirementsMatcher(
+            "parl.stroud.2019-05-02", nation="NIR"
+        )
         self.assertEqual(matcher.get_postal_voting_requirements(), "EFA-2002")
