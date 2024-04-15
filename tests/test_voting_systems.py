@@ -7,16 +7,15 @@ from uk_election_ids.metadata_tools import VotingSystemMatcher
 
 class TestVotingSystemJson(TestCase):
     def test_defaults_valid_voting_systems(self):
-        voting_systems = json.load(
-            Path("uk_election_ids/data/voting_systems.json").open()
-        )
+        with Path("uk_election_ids/data/voting_systems.json").open() as f:
+            voting_systems = json.load(f)
 
         def iter_defaults(data: dict, parent=None):
-            default = data.get("default", None)
+            default = data.get("default")
             if not default and parent not in ["dates", "nations"]:
                 self.assertTrue(
                     any(
-                        [key in ["nations", "dates"] for key in data]
+                        key in ["nations", "dates"] for key in data
                     ),
                     msg=f"{data} requires either a `default`, `nations` or `dates` key",
                 )

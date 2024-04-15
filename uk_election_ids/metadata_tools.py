@@ -41,8 +41,7 @@ class MetaDataMatcher:
         id_part = id_part.replace(
             "-", r"\-"
         )  # prevent '-' from being interpreted as range indicator
-        id_part = id_part.replace(".*.", r"\.(.*\.)?")
-        return id_part
+        return id_part.replace(".*.", r"\.(.*\.)?")
 
     def match_id(self):
         """

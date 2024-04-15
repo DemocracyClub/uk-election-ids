@@ -7,16 +7,15 @@ from uk_election_ids.metadata_tools import IDRequirementsMatcher
 
 class TestIDRequirementsJson(TestCase):
     def test_defaults_valid_id_requirements(self):
-        id_requirements = json.load(
-            Path("uk_election_ids/data/id_requirements.json").open()
-        )
+        with Path("uk_election_ids/data/id_requirements.json").open() as f:
+            id_requirements = json.load(f)
 
         def iter_defaults(data: dict, parent=None):
             default = data.get("default", "")
             if default == "" and parent not in ["dates", "nations"]:
                 self.assertTrue(
                     any(
-                        [key in ["nations", "dates"] for key in data]
+                        key in ["nations", "dates"] for key in data
                     ),
                     msg=f"{data} requires either a `default`, `nations` or `dates` key",
                 )

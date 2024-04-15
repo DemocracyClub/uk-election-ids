@@ -1,6 +1,9 @@
 from unittest import TestCase
 
-from uk_election_ids.metadata_tools import IDRequirementsMatcher, PostalVotingRequirementsMatcher
+from uk_election_ids.metadata_tools import (
+    IDRequirementsMatcher,
+    PostalVotingRequirementsMatcher,
+)
 
 
 class TestMetaDataMatcher(TestCase):
