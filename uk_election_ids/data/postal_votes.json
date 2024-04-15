@@ -1,0 +1,188 @@
+{
+  "id_type": {
+    "RPA2000": {
+      "name": "Representation of the People Act 2000"
+    },
+    "EFA-2002": {
+      "name": "Electoral Fraud (Northern Ireland) Act 2002"
+    },
+    "EA-2022": {
+      "name": "Elections Act 2022"
+    }
+  },
+  "defaults": {
+    "parl.*.by": {
+      "default": "EA-2022",
+      "nations": {
+        "NIR": {
+          "dates": {
+            ":2002-08-31": {
+              "default": "RPA2000"
+            },
+            "2002-09-01:": {
+              "default": "EFA-2002"
+            }
+          }
+        },
+        "SCT": {
+          "dates": {
+            ":2023-10-31": {
+              "default": "RPA2000"
+            },
+            "2023-10-31:": {
+              "default": "EA-2022"
+            }
+          }
+        },
+        "ENG": {
+          "dates": {
+            ":2023-10-31": {
+              "default": "RPA2000"
+            },
+            "2023-10-31:": {
+              "default": "EA-2022"
+            }
+          }
+        },
+        "WLS": {
+          "dates": {
+            ":2023-10-31": {
+              "default": "RPA2000"
+            },
+            "2023-10-31:": {
+              "default": "EA-2022"
+            }
+          }
+        }
+      }
+    },
+    "local": {
+      "nations": {
+        "NIR": {
+          "default": "EFA-2002",
+          "dates": {
+            ":2002-08-31": {
+              "default": null
+            },
+            "2002-09-01:": {
+              "default": "EFA-2002"
+            }
+          }
+        },
+        "SCT": {
+          "default": "RPA2000"
+        },
+        "ENG": {
+          "default": "EA-2022",
+          "dates": {
+            ":2023-10-31": {
+              "default": "RPA2000"
+            },
+            "2023-10-31:": {
+              "default": "EA-2022"
+            }
+          }
+        },
+        "WLS": {
+          "default": "RPA2000"
+        }
+      }
+    },
+    "parl": {
+      "default": "EA-2022",
+      "nations": {
+        "NIR": {
+          "dates": {
+            ":2002-08-31": {
+              "default": null
+            },
+            "2002-09-01:": {
+              "default": "EFA-2002"
+            }
+          }
+        }
+      },
+      "dates": {
+        ":2023-10-31": {
+          "default": "RPA2000"
+        },
+        "2023-10-31:": {
+          "default": "EA-2022"
+        }
+      }
+    },
+    "nia": {
+      "default": "EFA-2002",
+      "dates": {
+        ":2002-08-31": {
+          "default": null
+        },
+        "2002-09-01:": {
+          "default": "EFA-2002"
+        }
+      }
+    },
+    "europarl": {
+      "default": "RPA2000"
+    },
+    "naw": {
+      "default": "RPA2000"
+    },
+    "senedd": {
+      "default": "RPA2000"
+    },
+    "sp.c": {
+      "default": "RPA2000"
+    },
+    "sp.r": {
+      "default": "RPA2000"
+    },
+    "gla.c": {
+      "default": "EA-2022",
+      "dates": {
+        ":2023-10-31": {
+          "default": "RPA2000"
+        },
+        "2023-10-31:": {
+          "default": "EA-2022"
+        }
+      }
+    },
+    "gla": {
+      "default": "EA-2022",
+      "dates": {
+        ":2023-10-31": {
+          "default": "RPA2000"
+        },
+        "2023-10-31:": {
+          "default": "EA-2022"
+        }
+      }
+    },
+    "pcc": {
+      "default": "EA-2022",
+      "dates": {
+        ":2023-10-31": {
+          "default": "RPA2000"
+        },
+        "2023-10-31:": {
+          "default": "EA-2022"
+        }
+      }
+    },
+    "mayor": {
+      "default": "EA-2022",
+      "dates": {
+        ":2023-10-31": {
+          "default": "RPA2000"
+        },
+        "2023-10-31:": {
+          "default": "EA-2022"
+        }
+      }
+    },
+    "ref": {
+      "default": null
+    }
+  }
+}
