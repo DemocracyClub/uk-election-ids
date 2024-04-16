@@ -41,8 +41,7 @@ class MetaDataMatcher:
         id_part = id_part.replace(
             "-", r"\-"
         )  # prevent '-' from being interpreted as range indicator
-        id_part = id_part.replace(".*.", r"\.(.*\.)?")
-        return id_part
+        return id_part.replace(".*.", r"\.(.*\.)?")
 
     def match_id(self):
         """
@@ -118,6 +117,26 @@ class IDRequirementsMatcher(MetaDataMatcher):
     DATA = json.load(path.open())
 
     def get_id_requirements(self):
+        id_part, data = self.match_id()
+        if self.nation and self.nation in data.get("nations", {}):
+            data = data["nations"][self.nation]
+
+        if data.get("dates"):
+            data = self.match_dates(data["dates"])
+
+        default = data.get("default", "")
+        if default == "":
+            required_keys = data.keys()
+            raise ValueError(f"{id_part} requires {' or '.join(required_keys)}")
+
+        return data["default"]
+
+
+class PostalVotingRequirementsMatcher(MetaDataMatcher):
+    path = Path(__file__).parent / "data" / "postal_votes.json"
+    DATA = json.load(path.open())
+
+    def get_postal_voting_requirements(self):
         id_part, data = self.match_id()
         if self.nation and self.nation in data.get("nations", {}):
             data = data["nations"][self.nation]
