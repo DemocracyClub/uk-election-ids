@@ -28,13 +28,15 @@ setup(
     long_description_content_type="text/markdown",
     extras_require={
         "testing": ["coveralls"],
+        "docs": [
+            "sphinx==7.1.2",
+            "sphinx_rtd_theme==2.0.0",
+            "ghp-import==2.1.0"
+        ],
         "development": [
-            "sphinx",
-            "sphinx_rtd_theme",
-            "ghp-import",
-            "pydantic",
-            "black==23.3.0",
-            "ruff==0.0.261",
+            "pydantic==1.10.18",
+            "pre-commit==3.5.0",
+            "ruff==0.3.7",
         ],
     },
     classifiers=[
