@@ -19,6 +19,11 @@ jobs:
       - name: Install
         run: pip install .[development]
 
+      - name: Lint
+        run: |
+          ruff format . --check
+          ruff check .
+
       - name: Test
         run: |
           python run_tests.py
