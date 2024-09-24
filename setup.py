@@ -31,7 +31,7 @@ setup(
         "docs": [
             "sphinx==7.1.2",
             "sphinx_rtd_theme==2.0.0",
-            "ghp-import==2.1.0"
+            "ghp-import==2.1.0",
         ],
         "development": [
             "pydantic==1.10.18",

@@ -4,7 +4,6 @@ IdSpec = namedtuple("IdSpec", ["subtypes", "can_have_orgs", "can_have_divs"])
 
 
 class DataPackageParser:
-
     """
     Parser which uses the data in datapackage.py to build
     a dict of IdSpec() objects which describe what sort of

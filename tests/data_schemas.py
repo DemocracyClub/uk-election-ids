@@ -41,6 +41,11 @@ class VotingSystemSchema(BaseModel):
 
 
 if __name__ == "__main__":
-    data = Path(__file__).parent.parent / "uk_election_ids" / "data" /"voting_systems.json"
+    data = (
+        Path(__file__).parent.parent
+        / "uk_election_ids"
+        / "data"
+        / "voting_systems.json"
+    )
     schema = VotingSystemSchema.parse_file(data)
     VotingSystemSchema.validate(schema)
