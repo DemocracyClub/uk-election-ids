@@ -5,7 +5,6 @@ Create and validate Democracy Club Election Identifiers.
 ---
 
 [![Run tests](https://github.com/DemocracyClub/uk-election-ids/actions/workflows/test.yml/badge.svg)](https://github.com/DemocracyClub/uk-election-ids/actions/workflows/test.yml)
-[![Coverage Status](https://coveralls.io/repos/github/DemocracyClub/uk-election-ids/badge.svg?branch=master)](https://coveralls.io/github/DemocracyClub/uk-election-ids?branch=master)
 ![PyPI Version](https://img.shields.io/pypi/v/uk-election-ids.svg)
 ![License](https://img.shields.io/pypi/l/uk-election-ids.svg)
 ![Python Support](https://img.shields.io/pypi/pyversions/uk-election-ids.svg)
