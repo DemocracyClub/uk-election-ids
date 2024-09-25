@@ -4,12 +4,10 @@ Create and validate Democracy Club Election Identifiers.
 
 ---
 
-[![Build Status](https://travis-ci.org/DemocracyClub/uk-election-ids.svg?branch=master)](https://travis-ci.org/DemocracyClub/uk-election-ids)
-[![Coverage Status](https://coveralls.io/repos/github/DemocracyClub/uk-election-ids/badge.svg?branch=master)](https://coveralls.io/github/DemocracyClub/uk-election-ids?branch=master)
+[![Run tests](https://github.com/DemocracyClub/uk-election-ids/actions/workflows/test.yml/badge.svg)](https://github.com/DemocracyClub/uk-election-ids/actions/workflows/test.yml)
 ![PyPI Version](https://img.shields.io/pypi/v/uk-election-ids.svg)
 ![License](https://img.shields.io/pypi/l/uk-election-ids.svg)
 ![Python Support](https://img.shields.io/pypi/pyversions/uk-election-ids.svg)
-![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 
 * Installation: `pip install uk-election-ids`
 * [Documentation](https://democracyclub.github.io/uk-election-ids/)

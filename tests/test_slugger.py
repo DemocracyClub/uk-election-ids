@@ -6,7 +6,6 @@ from uk_election_ids.slugger import slugify
 
 
 class TestSlugify(TestCase):
-
     """
     For this particular use-case, we are primarily concerned with
     1. Slugging characters that appear in names of places in the UK sensibly
