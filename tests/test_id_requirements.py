@@ -77,6 +77,18 @@ class TestIDRequirementsMatcher(TestCase):
         )
         assert result.get_id_requirements() == "EA-2022"
 
+        # City of London Local elections (Common Councilman)
+        result = IDRequirementsMatcher(
+            "local.city-of-london.bishopsgate.2025-03-20", nation="ENG"
+        )
+        assert result.get_id_requirements() is None
+
+        # City of London Local elections (Alderman)
+        result = IDRequirementsMatcher(
+            "local.city-of-london-alder.bishopsgate.2025-03-20", nation="ENG"
+        )
+        assert result.get_id_requirements() is None
+
     def test_matcher_scotland(self):
         # Local election pre 2022 legislation
         result = IDRequirementsMatcher("local.stroud.2022-05-04", nation="SCT")

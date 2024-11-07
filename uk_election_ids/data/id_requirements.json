@@ -65,6 +65,12 @@
     "local.(braintree|broxtowe|craven|derby|mid-sussex|north-kesteven|north-west-leicestershire|pendle|watford|woking).*.2019-05-02": {
       "default": "pilot-2019"
     },
+    "local.city-of-london.*": {
+      "default": null
+    },
+    "local.city-of-london-alder.*": {
+      "default": null
+    },
     "local": {
       "nations": {
         "NIR": {
