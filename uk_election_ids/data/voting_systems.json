@@ -58,16 +58,22 @@
     "europarl": {
       "default": "PR-CL"
     },
+    "naw.c": {
+      "default": "FPTP"
+    },
     "naw": {
+      "default": "AMS"
+    },
+    "senedd.c": {
       "default": "FPTP"
     },
     "senedd": {
-      "default": "FPTP"
+      "default": "AMS"
     },
     "sp.c": {
       "default": "FPTP"
     },
-    "sp.r": {
+    "sp": {
       "default": "AMS"
     },
     "gla.c": {
