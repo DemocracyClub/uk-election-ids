@@ -9,6 +9,12 @@ class TestValidator(TestCase):
         self.assertTrue(validate("naw.r.2016-05-05"))
         self.assertTrue(validate("naw.r.mid-and-west-wales.2016-05-05"))
         self.assertTrue(validate("naw.r.mid-and-west-wales.by.2016-05-05"))
+        self.assertTrue(validate("senedd.r.mid-and-west-wales.2021-05-06"))
+        self.assertTrue(validate("senedd.r.mid-and-west-wales.by.2021-05-06"))
+        self.assertTrue(validate("senedd.pen-y-bont-bro-morgannwg.2026-05-07"))
+        self.assertTrue(
+            validate("senedd.pen-y-bont-bro-morgannwg.by.2026-05-07")
+        )
         self.assertTrue(validate("sp.2019-08-29"))
         self.assertTrue(validate("sp.c.2019-08-29"))
         self.assertTrue(validate("sp.c.shetland-islands.2019-08-29"))
@@ -62,15 +68,23 @@ class TestValidator(TestCase):
             validate("naw.aberavon.2019-01-01")
         )  # should have a subtype
         self.assertFalse(
-            validate("gla.r.barnet-and-camden.2016-05-05")
-        )  # invalid subtype
-        self.assertFalse(validate("naw.x.2019-01-01"))  # invalid subtype
-        self.assertFalse(
             validate("ref.croydon.by.2021-10-07")
         )  # there is no such thing as a by-referendum
+
+        # invalid subtypes
+        self.assertFalse(validate("gla.r.barnet-and-camden.2016-05-05"))
+        self.assertFalse(validate("naw.x.2019-01-01"))
+        self.assertFalse(validate("senedd.x.2021-05-06"))
+        self.assertFalse(validate("senedd.x.mid-and-west-wales.2021-05-06"))
+
         # too many clauses
         self.assertFalse(
             validate("naw.r.mid-and-west-wales.something-else.2016-05-05")
+        )
+        self.assertTrue(
+            validate(
+                "senedd.pen-y-bont-bro-morgannwg.something-else.2026-05-07"
+            )
         )
         self.assertFalse(
             validate("sp.c.shetland-islands.something-else.2019-08-29")
