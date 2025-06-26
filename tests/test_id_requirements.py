@@ -70,11 +70,15 @@ class TestIDRequirementsMatcher(TestCase):
             "gla.c.brent-and-harrow.2016-05-05", nation="ENG"
         )
         assert result.get_id_requirements() is None
+        result = IDRequirementsMatcher("gla.a.2016-05-05", nation="ENG")
+        assert result.get_id_requirements() is None
 
         # GLA post 2022 legislation
         result = IDRequirementsMatcher(
             "gla.c.brent-and-harrow.2023-05-04", nation="ENG"
         )
+        assert result.get_id_requirements() == "EA-2022"
+        result = IDRequirementsMatcher("gla.a.2023-05-04", nation="ENG")
         assert result.get_id_requirements() == "EA-2022"
 
         # City of London Local elections (Common Councilman)
@@ -104,6 +108,8 @@ class TestIDRequirementsMatcher(TestCase):
 
         # Scottish parliamentary election post 2022 legislation
         result = IDRequirementsMatcher("sp.c.2023-10-03", nation="SCT")
+        assert result.get_id_requirements() is None
+        result = IDRequirementsMatcher("sp.r.2023-10-03", nation="SCT")
         assert result.get_id_requirements() is None
 
         # UK parliamentary by-election post 2022 legislation
