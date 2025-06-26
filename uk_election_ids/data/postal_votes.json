@@ -131,22 +131,8 @@
     "senedd": {
       "default": "RPA2000"
     },
-    "sp.c": {
+    "sp": {
       "default": "RPA2000"
-    },
-    "sp.r": {
-      "default": "RPA2000"
-    },
-    "gla.c": {
-      "default": "EA-2022",
-      "dates": {
-        ":2023-10-31": {
-          "default": "RPA2000"
-        },
-        "2023-10-31:": {
-          "default": "EA-2022"
-        }
-      }
     },
     "gla": {
       "default": "EA-2022",
