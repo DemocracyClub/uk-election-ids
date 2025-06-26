@@ -306,12 +306,17 @@ class IdBuilder:
 
     def _validate_for_ballot_id(self):
         # validation checks specifically relevant to creating a ballot id
-        if isinstance(self.spec.subtypes, tuple) and not self.subtype:
+        if (
+            isinstance(self.spec.subtypes, tuple)
+            and self.spec.subtypes_required
+            and not self.subtype
+        ):
             raise ValueError(
                 "Subtype must be specified for election_type %s"
                 % (self.election_type)
             )
-        self._validate_subtype(self.subtype)
+        if self.subtype or self.spec.subtypes_required:
+            self._validate_subtype(self.subtype)
         if self.spec.can_have_orgs and not self.organisation:
             raise ValueError(
                 "election_type %s must have an organisation in order to create a ballot id"
@@ -429,7 +434,11 @@ class IdBuilder:
             if id_parts[-1] == "by":
                 id_parts.pop(-1)
                 builder = builder.with_contest_type("by")
-            if builder.spec.subtypes:
+            if (builder.spec.subtypes and builder.spec.subtypes_required) or (
+                builder.spec.subtypes
+                and not builder.spec.subtypes_required
+                and len(id_parts[0]) == 1
+            ):
                 subtype = id_parts.pop(0)
                 builder = builder.with_subtype(subtype)
             if id_parts and builder.spec.can_have_orgs:
