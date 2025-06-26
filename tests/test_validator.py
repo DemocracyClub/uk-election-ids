@@ -81,7 +81,7 @@ class TestValidator(TestCase):
         self.assertFalse(
             validate("naw.r.mid-and-west-wales.something-else.2016-05-05")
         )
-        self.assertTrue(
+        self.assertFalse(
             validate(
                 "senedd.pen-y-bont-bro-morgannwg.something-else.2026-05-07"
             )
