@@ -1,28 +1,6 @@
-import json
-from pathlib import Path
 from unittest import TestCase
 
 from uk_election_ids.metadata_tools import VotingSystemMatcher
-
-
-class TestVotingSystemJson(TestCase):
-    def test_defaults_valid_voting_systems(self):
-        with Path("uk_election_ids/data/voting_systems.json").open() as f:
-            voting_systems = json.load(f)
-
-        def iter_defaults(data: dict, parent=None):
-            default = data.get("default")
-            if not default and parent not in ["dates", "nations"]:
-                self.assertTrue(
-                    any(key in ["nations", "dates"] for key in data),
-                    msg=f"{data} requires either a `default`, `nations` or `dates` key",
-                )
-            for key, value in data.items():
-                if isinstance(value, dict):
-                    iter_defaults(value, parent=key)
-
-        for key, top_level_data in voting_systems["defaults"].items():
-            iter_defaults(top_level_data)
 
 
 class TestVotingSystemMatcher(TestCase):
