@@ -65,10 +65,25 @@
       "default": "AMS"
     },
     "senedd.c": {
-      "default": "FPTP"
+      "dates": {
+        ":2026-05-06": {
+          "default": "FPTP"
+        }
+      }
+    },
+    "senedd.r": {
+      "dates": {
+        ":2026-05-06": {
+          "default": "AMS"
+        }
+      }
     },
     "senedd": {
-      "default": "AMS"
+      "dates": {
+        "2026-05-07:": {
+          "default": "PR-CL"
+        }
+      }
     },
     "sp.c": {
       "default": "FPTP"
