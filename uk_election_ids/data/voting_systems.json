@@ -61,7 +61,7 @@
     "naw.c": {
       "default": "FPTP"
     },
-    "naw": {
+    "naw.r": {
       "default": "AMS"
     },
     "senedd.c": {
@@ -88,13 +88,13 @@
     "sp.c": {
       "default": "FPTP"
     },
-    "sp": {
+    "sp.r": {
       "default": "AMS"
     },
     "gla.c": {
       "default": "FPTP"
     },
-    "gla": {
+    "gla.a": {
       "default": "AMS"
     },
     "pcc": {
