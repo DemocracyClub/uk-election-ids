@@ -83,7 +83,6 @@
       "default": "AMS"
     },
     "pcc": {
-      "default": "FPTP",
       "dates": {
         ":2023-05-03": {
           "default": "sv"
@@ -94,7 +93,6 @@
       }
     },
     "mayor": {
-      "default": "FPTP",
       "dates": {
         ":2023-05-03": {
           "default": "sv"
