@@ -17,6 +17,8 @@ class TestVotingSystemMatcher(TestCase):
             ).get_voting_system(),
             "STV",
         )
+        with self.assertRaises(ValueError):
+            VotingSystemMatcher("local.2022-05-04").get_voting_system()
 
     def test_mayor(self):
         self.assertEqual(
@@ -83,10 +85,12 @@ class TestVotingSystemMatcher(TestCase):
                 "PR-CL",
             )
 
-        with self.assertRaises(ValueError):
-            VotingSystemMatcher(
-                "senedd.pen-y-bont-bro-morgannwg.2021-05-06"
-            ).get_voting_system()
+        for id_ in [
+            "senedd.pen-y-bont-bro-morgannwg.2021-05-06",
+            "senedd.2021-05-06",
+        ]:
+            with self.assertRaises(ValueError):
+                VotingSystemMatcher(id_).get_voting_system()
 
     def test_ams(self):
         for id_ in [
@@ -109,3 +113,9 @@ class TestVotingSystemMatcher(TestCase):
                 VotingSystemMatcher(id_).get_voting_system(),
                 "AMS",
             )
+        for id_ in [
+            "sp.2021-05-06",
+            "gla.2024-05-02",
+        ]:
+            with self.assertRaises(ValueError):
+                VotingSystemMatcher(id_).get_voting_system()
