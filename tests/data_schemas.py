@@ -47,7 +47,8 @@ class VotingSystemSchema(BaseModel):
                 if hasattr(v, "__dict__"):
                     _recurse_defaults(v.__dict__)
 
-        _recurse_defaults(values["defaults"])
+        if values.get("defaults"):
+            _recurse_defaults(values["defaults"])
         return values
 
 
