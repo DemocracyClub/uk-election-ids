@@ -74,7 +74,6 @@ class TestValidator(TestCase):
         # invalid subtypes
         self.assertFalse(validate("gla.r.barnet-and-camden.2016-05-05"))
         self.assertFalse(validate("naw.x.2019-01-01"))
-        self.assertFalse(validate("senedd.x.2021-05-06"))
         self.assertFalse(validate("senedd.x.mid-and-west-wales.2021-05-06"))
 
         # too many clauses

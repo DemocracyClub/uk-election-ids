@@ -437,7 +437,7 @@ class IdBuilder:
             if (builder.spec.subtypes and builder.spec.subtypes_required) or (
                 builder.spec.subtypes
                 and not builder.spec.subtypes_required
-                and len(id_parts[0]) == 1
+                and id_parts[0] in builder.spec.subtypes
             ):
                 subtype = id_parts.pop(0)
                 builder = builder.with_subtype(subtype)
