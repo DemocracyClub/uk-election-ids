@@ -4,118 +4,59 @@ from uk_election_ids.metadata_tools import VotingSystemMatcher
 
 
 class TestVotingSystemMatcher(TestCase):
-    def test_local(self):
-        self.assertEqual(
-            VotingSystemMatcher(
-                "local.stroud.2022-05-04", nation="ENG"
-            ).get_voting_system(),
-            "FPTP",
+    def test_valid(self):
+        test_cases = [
+            [["local.stroud.2022-05-04"], {"nation": "ENG"}, "FPTP"],
+            [["local.belfast.2022-05-04"], {"nation": "NIR"}, "STV"],
+            [["mayor.stroud.2022-05-04"], {}, "sv"],
+            [["mayor.stroud.2024-05-04"], {}, "FPTP"],
+            [["pcc.gloucestershire.2022-05-04"], {}, "sv"],
+            [["pcc.gloucestershire.2024-05-04"], {}, "FPTP"],
+            [["senedd.r.mid-and-west-wales.2021-05-06"], {}, "AMS"],
+            [["senedd.r.2021-05-06"], {}, "AMS"],
+            [["senedd.c.swansea-east.2021-05-06"], {}, "FPTP"],
+            [["senedd.c.2021-05-06"], {}, "FPTP"],
+            [["senedd.pen-y-bont-bro-morgannwg.2026-05-07"], {}, "PR-CL"],
+            [["senedd.2026-05-07"], {}, "PR-CL"],
+            [["sp.c.aberdeen-central.2021-05-06"], {}, "FPTP"],
+            [["sp.c.2021-05-06"], {}, "FPTP"],
+            [["gla.c.barnet-and-camden.2024-05-02"], {}, "FPTP"],
+            [["gla.c.2024-05-02"], {}, "FPTP"],
+            [["sp.r.central-scotland.2021-05-06"], {}, "AMS"],
+            [["sp.r.2021-05-06"], {}, "AMS"],
+            [["gla.a.2024-05-02"], {}, "AMS"],
+        ]
+        for args, kwargs, expected in test_cases:
+            with self.subTest(args=args, kwargs=kwargs, expected=expected):
+                self.assertEqual(
+                    VotingSystemMatcher(*args, **kwargs).get_voting_system(),
+                    expected,
+                )
+
+    def test_invalid(self):
+        invalid_ids = (
+            [
+                # Local elections may contain a mix of voting systems
+                "local.2022-05-04",
+            ]
+            + [
+                # Senedd subtype elections after 2026-05-07 doesn't make sense
+                "senedd.r.mid-and-west-wales.2026-05-07",
+                "senedd.r.2026-05-07",
+                "senedd.c.swansea-east.2026-05-07",
+                "senedd.c.2026-05-07",
+            ]
+            + [
+                # Senedd elections without subtype before 2026-05-07 doesn't make sense
+                "senedd.pen-y-bont-bro-morgannwg.2021-05-06",
+            ]
+            + [
+                # Contain a mix of AMS and FPTP
+                "senedd.2021-05-06",
+                "sp.2021-05-06",
+                "gla.2024-05-02",
+            ]
         )
-        self.assertEqual(
-            VotingSystemMatcher(
-                "local.belfast.2022-05-04", nation="NIR"
-            ).get_voting_system(),
-            "STV",
-        )
-        with self.assertRaises(ValueError):
-            VotingSystemMatcher("local.2022-05-04").get_voting_system()
-
-    def test_mayor(self):
-        self.assertEqual(
-            VotingSystemMatcher("mayor.stroud.2022-05-04").get_voting_system(),
-            "sv",
-        )
-        self.assertEqual(
-            VotingSystemMatcher("mayor.stroud.2024-05-04").get_voting_system(),
-            "FPTP",
-        )
-
-    def test_pcc(self):
-        self.assertEqual(
-            VotingSystemMatcher(
-                "pcc.gloucestershire.2022-05-04"
-            ).get_voting_system(),
-            "sv",
-        )
-        self.assertEqual(
-            VotingSystemMatcher(
-                "pcc.gloucestershire.2024-05-04"
-            ).get_voting_system(),
-            "FPTP",
-        )
-
-    def test_senedd_with_subtypes(self):
-        for id_ in [
-            "senedd.r.mid-and-west-wales.2021-05-06",
-            "senedd.r.2021-05-06",
-        ]:
-            self.assertEqual(
-                VotingSystemMatcher(id_).get_voting_system(),
-                "AMS",
-            )
-        for id_ in [
-            "senedd.c.swansea-east.2021-05-06",
-            "senedd.c.2021-05-06",
-        ]:
-            self.assertEqual(
-                VotingSystemMatcher(id_).get_voting_system(),
-                "FPTP",
-            )
-
-        for id_ in [
-            "senedd.r.mid-and-west-wales.2026-05-07",
-            "senedd.r.2026-05-07",
-        ]:
-            with self.assertRaises(ValueError):
-                VotingSystemMatcher(id_).get_voting_system()
-        for id_ in [
-            "senedd.c.swansea-east.2026-05-07",
-            "senedd.c.2026-05-07",
-        ]:
-            with self.assertRaises(ValueError):
-                VotingSystemMatcher(id_).get_voting_system()
-
-    def test_senedd_without_subtypes(self):
-        for id_ in [
-            "senedd.pen-y-bont-bro-morgannwg.2026-05-07",
-            "senedd.2026-05-07",
-        ]:
-            self.assertEqual(
-                VotingSystemMatcher(id_).get_voting_system(),
-                "PR-CL",
-            )
-
-        for id_ in [
-            "senedd.pen-y-bont-bro-morgannwg.2021-05-06",
-            "senedd.2021-05-06",
-        ]:
-            with self.assertRaises(ValueError):
-                VotingSystemMatcher(id_).get_voting_system()
-
-    def test_ams(self):
-        for id_ in [
-            "sp.c.aberdeen-central.2021-05-06",
-            "sp.c.2021-05-06",
-            "gla.c.barnet-and-camden.2024-05-02",
-            "gla.c.2024-05-02",
-        ]:
-            self.assertEqual(
-                VotingSystemMatcher(id_).get_voting_system(),
-                "FPTP",
-            )
-
-        for id_ in [
-            "sp.r.central-scotland.2021-05-06",
-            "sp.r.2021-05-06",
-            "gla.a.2024-05-02",
-        ]:
-            self.assertEqual(
-                VotingSystemMatcher(id_).get_voting_system(),
-                "AMS",
-            )
-        for id_ in [
-            "sp.2021-05-06",
-            "gla.2024-05-02",
-        ]:
-            with self.assertRaises(ValueError):
+        for id_ in invalid_ids:
+            with self.subTest(id_=id_), self.assertRaises(ValueError):
                 VotingSystemMatcher(id_).get_voting_system()
