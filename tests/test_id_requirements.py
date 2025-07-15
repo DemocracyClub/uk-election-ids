@@ -26,6 +26,25 @@ class TestIDRequirementsJson(TestCase):
 
 
 class TestIDRequirementsMatcher(TestCase):
+    def test_meta_data_matcher_regex(self):
+        matcher = IDRequirementsMatcher("parl.corby.2022-05-04", nation="ENG")
+        assert matcher.match_id()[0] == "parl"
+
+        matcher = IDRequirementsMatcher(
+            "parl.stroud.by.2022-05-04", nation="ENG"
+        )
+        assert matcher.match_id()[0] == "parl.*.by"
+
+        matcher = IDRequirementsMatcher(
+            "parl.reading.tilehurst.by.2022-05-04", nation="ENG"
+        )
+        assert matcher.match_id()[0] == "parl.*.by"
+
+        matcher = IDRequirementsMatcher(
+            "nonsense.parl.stroud.by.2022-05-04", nation="ENG"
+        )
+        assert matcher.match_id()[0] is None
+
     def test_matcher_england(self):
         # Local election pre 2022 legislation
         result = IDRequirementsMatcher("local.stroud.2022-05-04", nation="ENG")
@@ -70,11 +89,15 @@ class TestIDRequirementsMatcher(TestCase):
             "gla.c.brent-and-harrow.2016-05-05", nation="ENG"
         )
         assert result.get_id_requirements() is None
+        result = IDRequirementsMatcher("gla.a.2016-05-05", nation="ENG")
+        assert result.get_id_requirements() is None
 
         # GLA post 2022 legislation
         result = IDRequirementsMatcher(
             "gla.c.brent-and-harrow.2023-05-04", nation="ENG"
         )
+        assert result.get_id_requirements() == "EA-2022"
+        result = IDRequirementsMatcher("gla.a.2023-05-04", nation="ENG")
         assert result.get_id_requirements() == "EA-2022"
 
         # City of London Local elections (Common Councilman)
@@ -104,6 +127,8 @@ class TestIDRequirementsMatcher(TestCase):
 
         # Scottish parliamentary election post 2022 legislation
         result = IDRequirementsMatcher("sp.c.2023-10-03", nation="SCT")
+        assert result.get_id_requirements() is None
+        result = IDRequirementsMatcher("sp.r.2023-10-03", nation="SCT")
         assert result.get_id_requirements() is None
 
         # UK parliamentary by-election post 2022 legislation
