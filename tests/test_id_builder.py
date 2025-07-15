@@ -23,7 +23,7 @@ class TestIdBuilder(TestCase):
         self.assertEqual("parl.2018-05-03", election_id)
 
     def test_naw_sp_without_subtype(self):
-        for election_type in ("naw", "sp", "senedd"):
+        for election_type in ("naw", "sp"):
             id = IdBuilder(election_type, date(2018, 5, 3)).with_division(
                 "test-division"
             )
@@ -37,12 +37,28 @@ class TestIdBuilder(TestCase):
                 id.ballot_id
             self.assertEqual(["%s.2018-05-03" % (election_type)], id.ids)
 
-    def test_naw_sp_invalid_subtype(self):
+    def test_senedd_without_subtype(self):
+        id = IdBuilder("senedd", date(2018, 5, 3)).with_division(
+            "test-division"
+        )
+        election_id = id.election_group_id
+        self.assertEqual("senedd.2018-05-03", election_id)
+        with self.assertRaises(ValueError):
+            id.subtype_group_id
+        with self.assertRaises(ValueError):
+            id.organisation_group_id
+        ballot_id = id.ballot_id
+        self.assertEqual("senedd.test-division.2018-05-03", ballot_id)
+        self.assertEqual(
+            ["senedd.2018-05-03", "senedd.test-division.2018-05-03"], id.ids
+        )
+
+    def test_naw_sp_senedd_invalid_subtype(self):
         for election_type in ("naw", "sp", "senedd"):
             with self.assertRaises(ValueError):
                 IdBuilder(election_type, date(2018, 5, 3)).with_subtype("x")
 
-    def test_naw_sp_valid_subtype_no_division(self):
+    def test_naw_sp_senedd_valid_subtype_no_division(self):
         for election_type in ("naw", "sp", "senedd"):
             id = IdBuilder(election_type, date(2018, 5, 3)).with_subtype("c")
             election_id = id.election_group_id
@@ -61,14 +77,14 @@ class TestIdBuilder(TestCase):
                 id.ids,
             )
 
-    def test_naw_sp_with_org(self):
+    def test_naw_sp_senedd_with_org(self):
         for election_type in ("naw", "sp", "senedd"):
             with self.assertRaises(ValueError):
                 IdBuilder(election_type, date(2018, 5, 3)).with_organisation(
                     "test-org"
                 )
 
-    def test_naw_sp_with_division(self):
+    def test_naw_sp_senddd_with_subtype_and_division(self):
         for election_type in ("naw", "sp", "senedd"):
             id = (
                 IdBuilder(election_type, date(2018, 5, 3))

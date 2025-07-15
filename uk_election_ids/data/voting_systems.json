@@ -1,9 +1,9 @@
 {
   "voting_systems": {
     "AMS": {
-      "name": "Additional Member System",
+      "name": "Additional Member System (Party List)",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Additional_Member_System",
-      "description": "In an election using the Additional Member System, each voter casts two votes: a vote for a candidate standing in their constituency (with or without an affiliated party), and a vote for a party list standing in a wider region made up of multiple constituencies.",
+      "description": "In an election using the Additional Member System, voters have two ballot papers on polling day. One is used to elect a constituency member using FPTP. The second is used to vote for a party in a wider region. Constituency votes are counted first. The share of the vote in the regional list ballot is then used to allocate regional list seats. In calculating how many list seats a party is entitled to, FPTP constiteuncy seats already won are taken into account.",
       "uses_party_lists": true
     },
     "FPTP": {
@@ -61,29 +61,43 @@
     "naw.c": {
       "default": "FPTP"
     },
-    "naw": {
+    "naw.r": {
       "default": "AMS"
     },
     "senedd.c": {
-      "default": "FPTP"
+      "dates": {
+        ":2026-05-06": {
+          "default": "FPTP"
+        }
+      }
+    },
+    "senedd.r": {
+      "dates": {
+        ":2026-05-06": {
+          "default": "AMS"
+        }
+      }
     },
     "senedd": {
-      "default": "AMS"
+      "dates": {
+        "2026-05-07:": {
+          "default": "PR-CL"
+        }
+      }
     },
     "sp.c": {
       "default": "FPTP"
     },
-    "sp": {
+    "sp.r": {
       "default": "AMS"
     },
     "gla.c": {
       "default": "FPTP"
     },
-    "gla": {
+    "gla.a": {
       "default": "AMS"
     },
     "pcc": {
-      "default": "FPTP",
       "dates": {
         ":2023-05-03": {
           "default": "sv"
@@ -94,7 +108,6 @@
       }
     },
     "mayor": {
-      "default": "FPTP",
       "dates": {
         ":2023-05-03": {
           "default": "sv"

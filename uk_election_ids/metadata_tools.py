@@ -98,6 +98,8 @@ class VotingSystemMatcher(MetaDataMatcher):
 
     def get_voting_system(self):
         id_part, data = self.match_id()
+        if id_part is None or data is None:
+            raise ValueError(f"No match found for id {self.election_id}")
         if self.nation and self.nation in data.get("nations", {}):
             data = data["nations"][self.nation]
 
@@ -118,6 +120,8 @@ class IDRequirementsMatcher(MetaDataMatcher):
 
     def get_id_requirements(self):
         id_part, data = self.match_id()
+        if id_part is None or data is None:
+            raise ValueError(f"No match found for id {self.election_id}")
         if self.nation and self.nation in data.get("nations", {}):
             data = data["nations"][self.nation]
 
@@ -138,6 +142,8 @@ class PostalVotingRequirementsMatcher(MetaDataMatcher):
 
     def get_postal_voting_requirements(self):
         id_part, data = self.match_id()
+        if id_part is None or data is None:
+            raise ValueError(f"No match found for id {self.election_id}")
         if self.nation and self.nation in data.get("nations", {}):
             data = data["nations"][self.nation]
 

@@ -13,8 +13,19 @@ class VotingSystem(BaseModel):
 
 class SingleVotingSystemRule(BaseModel):
     default: Optional[str]
-    nations: Optional[dict]
-    dates: Optional[dict]
+    nations: Optional[Dict[str, "SingleVotingSystemRule"]]
+    dates: Optional[Dict[str, "SingleVotingSystemRule"]]
+
+    @root_validator
+    def at_least_one_required(cls, values):
+        if not any(
+            values.get(key) is not None
+            for key in ("default", "nations", "dates")
+        ):
+            raise ValueError(
+                "At least one of 'default', 'nations', or 'dates' must be present"
+            )
+        return values
 
 
 class VotingSystemSchema(BaseModel):
@@ -36,7 +47,8 @@ class VotingSystemSchema(BaseModel):
                 if hasattr(v, "__dict__"):
                     _recurse_defaults(v.__dict__)
 
-        _recurse_defaults(values["defaults"])
+        if values.get("defaults"):
+            _recurse_defaults(values["defaults"])
         return values
 
 
