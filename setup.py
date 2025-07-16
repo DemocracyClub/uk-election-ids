@@ -17,7 +17,7 @@ def _get_description():
 
 setup(
     name="uk_election_ids",
-    version="0.9.2",
+    version="0.10.0",
     author="chris48s",
     license="MIT",
     url="https://github.com/DemocracyClub/uk-election-ids/",
