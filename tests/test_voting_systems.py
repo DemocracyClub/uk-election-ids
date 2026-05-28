@@ -10,6 +10,7 @@ class TestVotingSystemMatcher(TestCase):
             [["local.belfast.2022-05-04"], {"nation": "NIR"}, "STV"],
             [["mayor.stroud.2022-05-04"], {}, "sv"],
             [["mayor.stroud.2024-05-04"], {}, "FPTP"],
+            [["mayor.stroud.2026-06-20"], {}, "sv"],
             [["pcc.gloucestershire.2022-05-04"], {}, "sv"],
             [["pcc.gloucestershire.2024-05-04"], {}, "FPTP"],
             [["senedd.r.mid-and-west-wales.2021-05-06"], {}, "AMS"],
