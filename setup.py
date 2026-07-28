@@ -36,7 +36,7 @@ setup(
         "development": [
             "pydantic==1.10.18",
             "pre-commit==3.5.0",
-            "ruff==0.3.7",
+            "ruff==0.15.22",
         ],
     },
     classifiers=[
