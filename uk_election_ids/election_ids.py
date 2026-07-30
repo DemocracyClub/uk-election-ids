@@ -381,7 +381,7 @@ class IdBuilder:
         return str(self.ids)
 
     def __eq__(self, other):
-        return type(other) == IdBuilder and self.__dict__ == other.__dict__
+        return isinstance(other, IdBuilder) and self.__dict__ == other.__dict__
 
     @classmethod
     def from_id(cls, identifier: str) -> "IdBuilder":
